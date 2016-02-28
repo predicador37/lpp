@@ -1,0 +1,85 @@
+<repositorio xmlns="http://www.uned.es/lpp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="file:///./imagen.xsd">
+  <!--1 or more repetitions:-->
+  <imagen id="string">
+    <!--You have a CHOICE of the next 6 items at this level-->
+    <rectangulo>
+      <color>string</color>
+      <borde>3</borde>
+      <opacidad>3</opacidad>
+      <posicion>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </posicion>
+      <ancho>1.051732E7</ancho>
+      <alto>1.051732E7</alto>
+    </rectangulo>
+    <circulo>
+      <color>string</color>
+      <borde>3</borde>
+      <opacidad>3</opacidad>
+      <centro>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </centro>
+      <radio>1.051732E7</radio>
+    </circulo>
+    <eclipse>
+      <color>string</color>
+      <borde>3</borde>
+      <opacidad>3</opacidad>
+      <centro>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </centro>
+      <radio_x>1.051732E7</radio_x>
+      <radio_y>1.051732E7</radio_y>
+    </eclipse>
+    <linea>
+      <punto_inicial>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto_inicial>
+      <punto_final>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto_final>
+      <color>string</color>
+      <grosor>3</grosor>
+    </linea>
+    <poligono>
+      <color>string</color>
+      <borde>3</borde>
+      <opacidad>3</opacidad>
+      <!--3 or more repetitions:-->
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+    </poligono>
+    <polilinea>
+      <!--3 or more repetitions:-->
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+      <punto>
+        <x>1.051732E7</x>
+        <y>1.051732E7</y>
+      </punto>
+      <color>string</color>
+    </polilinea>
+  </imagen>
+</repositorio>

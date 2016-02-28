@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.uned.es/lpp" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="repositorio" type="lpp:repositorioType" xmlns:lpp="http://www.uned.es/lpp"/>
+  <xs:complexType name="posicionType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="x"/>
+      <xs:element type="xs:string" name="y"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="lineaType">
+    <xs:sequence>
+      <xs:element type="lpp:punto_inicialType" name="punto_inicial" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="lpp:punto_finalType" name="punto_final" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:string" name="grosor"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="puntoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="x"/>
+      <xs:element type="xs:string" name="y"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eclipseType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:string" name="borde"/>
+      <xs:element type="xs:string" name="opacidad"/>
+      <xs:element type="lpp:centroType" name="centro" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="xs:string" name="radio_x"/>
+      <xs:element type="xs:string" name="radio_y"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="punto_finalType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="x"/>
+      <xs:element type="xs:string" name="y"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="imagenType">
+    <xs:sequence>
+      <xs:element type="lpp:rectanguloType" name="rectangulo" xmlns:lpp="http://www.uned.es/lpp">
+        <xs:annotation>
+          <xs:documentation>You have a CHOICE of the next 6 items at this level</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element type="lpp:circuloType" name="circulo" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="lpp:eclipseType" name="eclipse" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="lpp:lineaType" name="linea" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="lpp:poligonoType" name="poligono" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="lpp:polilineaType" name="polilinea" xmlns:lpp="http://www.uned.es/lpp"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id"/>
+  </xs:complexType>
+  <xs:complexType name="poligonoType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:string" name="borde"/>
+      <xs:element type="xs:string" name="opacidad"/>
+      <xs:element type="lpp:puntoType" name="punto" maxOccurs="unbounded" minOccurs="0" xmlns:lpp="http://www.uned.es/lpp">
+        <xs:annotation>
+          <xs:documentation>3 or more repetitions:</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="repositorioType">
+    <xs:sequence>
+      <xs:element type="lpp:imagenType" name="imagen" xmlns:lpp="http://www.uned.es/lpp">
+        <xs:annotation>
+          <xs:documentation>1 or more repetitions:</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="polilineaType">
+    <xs:sequence>
+      <xs:element type="lpp:puntoType" name="punto" maxOccurs="unbounded" minOccurs="0" xmlns:lpp="http://www.uned.es/lpp">
+        <xs:annotation>
+          <xs:documentation>3 or more repetitions:</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element type="xs:string" name="color"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="circuloType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:string" name="borde"/>
+      <xs:element type="xs:string" name="opacidad"/>
+      <xs:element type="lpp:centroType" name="centro" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="xs:string" name="radio"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rectanguloType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="color"/>
+      <xs:element type="xs:string" name="borde"/>
+      <xs:element type="xs:string" name="opacidad"/>
+      <xs:element type="lpp:posicionType" name="posicion" xmlns:lpp="http://www.uned.es/lpp"/>
+      <xs:element type="xs:string" name="ancho"/>
+      <xs:element type="xs:string" name="alto"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="punto_inicialType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="x"/>
+      <xs:element type="xs:string" name="y"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="centroType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="x"/>
+      <xs:element type="xs:string" name="y"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
