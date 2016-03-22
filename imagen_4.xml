@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<lpp:repositorio xmlns:lpp="http://www.uned.es/lpp">
+<lpp:repositorio xmlns:lpp="http://www.uned.es/lpp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://www.uned.es/lpp imagen.xsd" >
 
     <lpp:imagen id="1">
     <lpp:rectangulo>
@@ -15,6 +16,42 @@
     </lpp:rectangulo>
     </lpp:imagen>
     <lpp:imagen id="2">
+        <lpp:linea>
+            <lpp:puntoInicial>
+                <lpp:x>0.0</lpp:x>
+                <lpp:y>5.0</lpp:y>
+            </lpp:puntoInicial>
 
+            <lpp:puntoFinal>
+                <lpp:x>5.0</lpp:x>
+                <lpp:y>5.0</lpp:y>
+            </lpp:puntoFinal>
+
+            <lpp:color>rojo</lpp:color>
+            <lpp:grosor>10</lpp:grosor>
+
+        </lpp:linea>
+        <lpp:polilinea>
+            <lpp:punto>
+                <lpp:x>1.0</lpp:x>
+                <lpp:y>1.0</lpp:y>
+            </lpp:punto>
+            <lpp:punto>
+                <lpp:x>2.0</lpp:x>
+                <lpp:y>2.0</lpp:y>
+            </lpp:punto>
+            <lpp:color>azul</lpp:color>
+        </lpp:polilinea>
+        <lpp:polilinea>
+            <lpp:punto>
+                <lpp:x>2.0</lpp:x>
+                <lpp:y>2.0</lpp:y>
+            </lpp:punto>
+            <lpp:punto>
+                <lpp:x>3.0</lpp:x>
+                <lpp:y>3.0</lpp:y>
+            </lpp:punto>
+            <lpp:color>azul</lpp:color>
+        </lpp:polilinea>
     </lpp:imagen>
     </lpp:repositorio>

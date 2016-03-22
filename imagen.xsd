@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.uned.es/lpp"
-           xmlns:lpp="http://www.uned.es/lpp" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+           xmlns:lpp="http://www.uned.es/lpp"  xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="repositorio" type="lpp:tipoRepositorio" xmlns:lpp="http://www.uned.es/lpp"/>
+    <xs:complexType name="tipoRepositorio">
+        <xs:sequence>
+            <xs:element name="imagen" type="lpp:tipoImagen" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="tipoPunto">
         <xs:sequence>
@@ -10,6 +14,7 @@
             <xs:element name="y" type="xs:double"/>
         </xs:sequence>
     </xs:complexType>
+
     <xs:complexType name="tipoForma">
         <xs:sequence>
             <xs:element name="color" type="xs:string"/>
@@ -20,9 +25,9 @@
 
     <xs:complexType name="tipoRectangulo">
         <xs:complexContent>
-            <xs:extension base="lpp:tipoForma" xmlns="http://www.uned.es/lpp">
+            <xs:extension base="lpp:tipoForma" >
                 <xs:sequence>
-                    <xs:element name="posicion" type="lpp:tipoPunto" xmlns:lpp="http://www.uned.es/lpp"></xs:element>
+                    <xs:element name="posicion" type="lpp:tipoPunto"></xs:element>
                     <xs:element name="ancho" type="xs:double"/>
                     <xs:element name="alto" type="xs:double"/>
                 </xs:sequence>
@@ -33,9 +38,9 @@
 
     <xs:complexType name="tipoCirculo">
         <xs:complexContent>
-            <xs:extension base="lpp:tipoForma" xmlns:lpp="http://www.uned.es/lpp">
+            <xs:extension base="lpp:tipoForma">
                 <xs:sequence>
-                    <xs:element name="centro" type="lpp:tipoPunto" xmlns:lpp="http://www.uned.es/lpp"></xs:element>
+                    <xs:element name="centro" type="lpp:tipoPunto"></xs:element>
                     <xs:element name="radio" type="xs:double"/>
                 </xs:sequence>
             </xs:extension>
@@ -44,9 +49,9 @@
 
     <xs:complexType name="tipoElipse">
         <xs:complexContent>
-            <xs:extension base="lpp:tipoForma" xmlns:lpp="http://www.uned.es/lpp">
+            <xs:extension base="lpp:tipoForma" >
                 <xs:sequence>
-                    <xs:element name="centro" type="lpp:tipoPunto" xmlns:lpp="http://www.uned.es/lpp"></xs:element>
+                    <xs:element name="centro" type="lpp:tipoPunto"></xs:element>
                     <xs:element name="radio_x" type="xs:double"/>
                     <xs:element name="radio_y" type="xs:double"/>
                 </xs:sequence>
@@ -56,8 +61,8 @@
 
     <xs:complexType name="tipoLinea">
         <xs:sequence>
-            <xs:element name="punto_inicial" type="lpp:tipoPunto" xmlns:lpp="http://www.uned.es/lpp"></xs:element>
-            <xs:element name="punto_final" type="lpp:tipoPunto" xmlns:lpp="http://www.uned.es/lpp"/>
+            <xs:element name="puntoInicial" type="lpp:tipoPunto" ></xs:element>
+            <xs:element name="puntoFinal" type="lpp:tipoPunto" />
             <xs:element name="color" type="xs:string"/>
             <xs:element name="grosor" type="xs:int"/>
         </xs:sequence>
@@ -66,10 +71,9 @@
 
     <xs:complexType name="tipoPoligono">
         <xs:complexContent>
-            <xs:extension base="lpp:tipoForma" xmlns:lpp="http://www.uned.es/lpp">
+            <xs:extension base="lpp:tipoForma">
                 <xs:sequence>
-                    <xs:element name="punto" type="lpp:tipoPunto" minOccurs="3" maxOccurs="unbounded"
-                                xmlns:lpp="http://www.uned.es/lpp"></xs:element>
+                    <xs:element name="punto" type="lpp:tipoPunto" minOccurs="3" maxOccurs="unbounded"></xs:element>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -77,8 +81,7 @@
 
     <xs:complexType name="tipoPolilinea">
         <xs:sequence>
-            <xs:element name="punto" type="lpp:tipoPunto" minOccurs="3" maxOccurs="unbounded"
-                        xmlns:lpp="http://www.uned.es/lpp"></xs:element>
+            <xs:element name="punto" type="lpp:tipoPunto" minOccurs="2" maxOccurs="unbounded"></xs:element>
             <xs:element name="color" type="xs:string"/>
 
         </xs:sequence>
@@ -89,23 +92,16 @@
     <xs:complexType name="tipoImagen">
 
         <xs:choice minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="rectangulo" type="lpp:tipoRectangulo" xmlns:lpp="http://www.uned.es/lpp"/>
-            <xs:element name="circulo" type="lpp:tipoCirculo" xmlns:lpp="http://www.uned.es/lpp"/>
-            <xs:element name="eclipse" type="lpp:tipoElipse" xmlns:lpp="http://www.uned.es/lpp"/>
-            <xs:element name="linea" type="lpp:tipoLinea" xmlns:lpp="http://www.uned.es/lpp"/>
-            <xs:element name="poligono" type="lpp:tipoPoligono" xmlns:lpp="http://www.uned.es/lpp"/>
-            <xs:element name="polilinea" type="lpp:tipoPolilinea" xmlns:lpp="http://www.uned.es/lpp"/>
+            <xs:element name="rectangulo" type="lpp:tipoRectangulo" />
+            <xs:element name="circulo" type="lpp:tipoCirculo" />
+            <xs:element name="eclipse" type="lpp:tipoElipse" />
+            <xs:element name="linea" type="lpp:tipoLinea" />
+            <xs:element name="poligono" type="lpp:tipoPoligono" />
+            <xs:element name="polilinea" type="lpp:tipoPolilinea" />
         </xs:choice>
         <xs:attribute name="id" type="xs:string"></xs:attribute>
     </xs:complexType>
 
-
-    <xs:complexType name="tipoRepositorio">
-        <xs:sequence>
-            <xs:element name="imagen" type="lpp:tipoImagen" minOccurs="1" maxOccurs="unbounded"
-                        xmlns:lpp="http://www.uned.es/lpp"/>
-        </xs:sequence>
-    </xs:complexType>
-
+    <xs:element name="repositorio" type="lpp:tipoRepositorio" />
 
 </xs:schema>
