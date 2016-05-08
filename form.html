@@ -18,48 +18,13 @@
 </head>
 <div class="container-fluid">
     <form method="POST" action="form.php" name="form">
-        <div class="form-group">
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Rectángulo </input>
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Círculo </input>
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Elipse </input>
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Línea </input>
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Polígono </input>
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input class="form-control" name="forma" type="radio">Polilínea </input>
-                </label>
-            </div>
-        </div>
-        <hr class="separator"/>
         <div class="formRowRepeatingSection">
-            <a href="#" class="btn btn-default" onclick='repetir(".rectangulo")'>Añadir rectángulo</a>
-            <a href="#" class="btn btn-default" onclick='repetir(".poligono")'>Añadir polígono</a>
-        </div>
-        <input name="rectangulos" id="rectangulos" type="text" style="display: none" value="0" />
-        <input name="poligonos" id="poligonos" type="text" style="display: none" value="0" />
-
+        <a href="#" class="btn btn-default" onclick='repetir(".imagen")'>Añadir imagen</a>
         <button type="submit" class="btn btn-default">Generar XML</button>
+            </div>
+        <hr class="separator"/>
 
+        <input name="imagens" id="imagens" type="text" style="display: none" value="0" />
     </form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -73,97 +38,132 @@
     });
 
     $(document).on('click', '.borrarElemento', function () {
-        $('input[name="' + $(this).parent('div').parent('div').attr('class') + "s" + '"]').attr('value',document.getElementById( $(this).parent('div').parent('div').attr('class') + "s").getAttribute("value")-1);
+        $('input[name="' + $(this).parent('div').parent('div').attr('class') + "s_imagen_" + '"]').attr('value',document.getElementById( $(this).parent('div').parent('div').attr('class') + "s").getAttribute("value")-1);
         $(this).parent('div').parent('div').remove();
         return false;
     });
 
-    function repetirPunto(parentCount) {
+    function repetirPunto(parentCount, n_imagen) {
+
+        var currentCount = $(".puntos_poligono_" + parentCount + "_imagen_" + n_imagen).children().length;
+        var newCount = currentCount + 1;
+        var newParentCount = parentCount + 1;
+        $('input[name="cuenta_puntos_poligono_'+ parentCount+'_imagen_'+n_imagen +'"]').attr('value', newCount);
+
+
         var puntoHtml = [ '<div class="punto_poligono">',
             '<h4>Punto 2</h4>',
             '<hr class="separator"/>',
             '<div class="form-group">',
-            '<label for="x_poligono_2">X</label>',
-            '<input class="form-control" type="number" name="x2_poligono_1" id="x2_poligono_1" />',
+            '<label for="x2_poligono_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x2_poligono_1_imagen_1" id="x2_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="y_poligono_2">Y</label>',
-            '<input class="form-control" type="number" name="y2_poligono_1" id="y2_poligono_1" />',
+            '<label for="y2_poligono_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y2_poligono_1_imagen_1" id="y2_poligono_1_imagen_1" />',
             '</div>',
             '</div>'].join('\n');
 
-        var currentCount = $(".puntos_poligono_" + parentCount).children().length;
-        var newCount = currentCount + 1;
-        var newParentCount = parentCount + 1;
-        var lastRepeatingGroup = $(".punto_poligono").last();
+
+        var lastRepeatingGroup = $(".puntos_poligono_" +  parentCount + "_imagen_" + n_imagen).last();
         var newSection = puntoHtml;
-        newSection = newSection.replace("x2", "x"+newCount);
-        newSection = newSection.replace("y2", "y"+newCount);
-        //var lastRepeatingGroup = $(seccion).last();
-        lastRepeatingGroup.append(newSection)
-       // var newSection = lastRepeatingGroup.clone();
-        //newSection.insertAfter(lastRepeatingGroup);
-        newSection.find("input").each(function (index, input) {
-           // input.id = input.id.replace("_" + currentCount, "_" + newCount);
-            //input.id = input.id.replace("x" + currentCount, "x" + newCount);
-            //input.id = input.id.replace("y" + currentCount, "y" + newCount);
-           // input.name = input.name.replace("_" + currentCount, "_" + newCount);
-           // input.name = input.name.replace("x" + currentCount, "x" + newCount);
-           // input.name = input.name.replace("y" + currentCount, "y" + newCount);
+        newSection = newSection.replace(/imagen_1/g, "imagen_"+n_imagen);
+        newSection = newSection.replace(/x2/g, "x"+newCount);
+        newSection = newSection.replace(/y2/g, "y"+newCount);
+        lastRepeatingGroup.append(newSection);
+
+        $(".puntos_poligono_" + parentCount + "_imagen_" + n_imagen).children().last().find("input").each(function (index, input) {
+            input.id = input.id.replace("_" + currentCount, "_" + newCount);
+            input.name = input.name.replace("_" + currentCount, "_" + newCount);
         });
-        newSection.find("label").each(function (index, label) {
+        $(".puntos_poligono_" + parentCount + "_imagen_" + n_imagen).children().last().find("label").each(function (index, label) {
             var l = $(label);
             l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
-            l.attr('for', l.attr('for').replace("/x" + parentCount + "/g", "x" + newParentCount));
-            l.attr('for', l.attr('for').replace("/y" + parentCount + "/g", "y" + newParentCount));
+            l.attr('for', l.attr('for').replace(/x2/g, "x" + newParentCount));
+            l.attr('for', l.attr('for').replace(/y2/g, "y" + newParentCount));
         });
-        newSection.find("h4").each(function (index, h4) {
+        $(".puntos_poligono_" + parentCount + "_imagen_" + n_imagen).children().last().find("h4").each(function (index, h4) {
             var h = $(h4);
-            h.text(h.text().replace(" " + currentCount, " " + newCount));
+            h.text(h.text().replace(" 2", " " + newCount));
 
         });
     }
 
-    function repetir(seccion) {
+    function borrar(element, n_imagen, count) {
+        if (document.getElementById( $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value")-1 == 0) {
+            document.getElementById( $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).remove();
+            if ($(element).parent('div').parent('div').attr('class') == 'poligono') {
+                document.getElementById("cuenta_puntos_poligono_"+count+"_imagen_"+n_imagen).remove();
+            }
 
-        var currentCount = $(seccion).length;
+    }else {
+
+            $('input[name="' + $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen + '"]').attr('value', document.getElementById($(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value") - 1);
+        }
+        $(element).parent('div').parent('div').remove();
+
+        return false;
+    }
+
+    function repetir(seccion, n_imagen) {
+
+        var currentCount;
+
+        if (seccion == ".imagen") {
+            var currentCount= $(seccion).length;
+        }
+        else {
+            var currentCount = $("#imagen_" + n_imagen).find(seccion).length;
+        }
         var newCount = currentCount + 1;
+        var countHtml = '<input name="'+seccion.replace(".", "")+'s_imagen_'+n_imagen +'" id="'+seccion.replace(".", "")+'s_imagen_'+n_imagen+'" type="text" style="display: none" value="'+newCount+'" />'
+
+        var imagenHtml = [
+            ' <div id="imagen_1" class="imagen">',
+            '<h3>Imagen 1</h3>',
+            '<div class="formRowRepeatingSection">',
+            '<a href="#" class="btn btn-default" onclick=\'repetir(".rectangulo", 1)\'>Añadir rectángulo</a>',
+            '<a href="#" class="btn btn-default" onclick=\'repetir(".poligono", 1)\'>Añadir polígono</a>',
+            '<hr class="separator"/>',
+            '</div>',
+            '</div>'
+        ].join("\n");
 
         var rectanguloHtml = [
             ' <div class="rectangulo">',
             '<h3>Rectángulo 1</h3>',
             '<div>',
-            '<a href="#" class="btn btn-default borrarElemento">Eliminar rectángulo</a>',
+            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar rectángulo</a>',
             '</div>',
             '<hr class="separator"/>',
 
             '<div class="form-group">',
-            '<label for="color_rectangulo_1">Color</label>',
-            '<input class="form-control" type="text" name="color_rectangulo_1" id="color_rectangulo_1" />',
+            '<label for="color_rectangulo_1_imagen_1">Color</label>',
+            '<input class="form-control" type="text" name="color_rectangulo_1_imagen_1" id="color_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="borde_rectangulo_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_rectangulo_1" id="borde_rectangulo_1" />',
+            '<label for="borde_rectangulo_1_imagen_1">Borde</label>',
+            '<input class="form-control" type="number" name="borde_rectangulo_1_imagen_1" id="borde_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="opacidad_rectangulo_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_rectangulo_1" id="opacidad_rectangulo_1" />',
+            '<label for="opacidad_rectangulo_1_imagen_1">opacidad</label>',
+            '<input class="form-control" type="number" name="opacidad_rectangulo_1_imagen_1" id="opacidad_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="x_rectangulo_1">X</label>',
-            '<input class="form-control" type="number" name="x_rectangulo_1" id="x_rectangulo_1" />',
+            '<label for="x_rectangulo_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x_rectangulo_1_imagen_1" id="x_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="y_rectangulo_1">Y</label>',
-            '<input class="form-control" type="number" name="y_rectangulo_1" id="y_rectangulo_1" />',
+            '<label for="y_rectangulo_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y_rectangulo_1_imagen_1" id="y_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="ancho_rectangulo_1">Ancho</label>',
-            '<input class="form-control" type="number" name="ancho_rectangulo_1" id="ancho_rectangulo_1" />',
+            '<label for="ancho_rectangulo_1_imagen_1">Ancho</label>',
+            '<input class="form-control" type="number" name="ancho_rectangulo_1_imagen_1" id="ancho_rectangulo_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="alto_rectangulo_1">Alto</label>',
-            '<input class="form-control" type="number" name="alto_rectangulo_1" id="alto_rectangulo_1" />',
+            '<label for="alto_rectangulo_1_imagen_1">Alto</label>',
+            '<input class="form-control" type="number" name="alto_rectangulo_1_imagen_1" id="alto_rectangulo_1_imagen_1" />',
             '</div>',
 
             '</div>'
@@ -173,60 +173,60 @@
             ' <div class="poligono">',
             '<h3>Polígono 1</h3>',
             '<div>',
-            '<a href="#" class="btn btn-default borrarElemento">Eliminar polígono</a>',
+            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar polígono</a>',
             '</div>',
             '<hr class="separator"/>',
 
             '<div class="form-group">',
-            '<label for="color_poligono_1">Color</label>',
-            '<input class="form-control" type="text" name="color_poligono_1" id="color_poligono_1" />',
+            '<label for="color_poligono_1_imagen_1">Color</label>',
+            '<input class="form-control" type="text" name="color_poligono_1_imagen_1" id="color_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="borde_poligono_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_poligono_1" id="borde_poligono_1" />',
+            '<label for="borde_poligono_1_imagen_1">Borde</label>',
+            '<input class="form-control" type="number" name="borde_poligono_1_imagen_1" id="borde_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="opacidad_poligono_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_poligono_1" id="opacidad_poligono_1" />',
+            '<label for="opacidad_poligono_1_imagen_1">opacidad</label>',
+            '<input class="form-control" type="number" name="opacidad_poligono_1_imagen_1" id="opacidad_poligono_1_imagen_1" />',
             '</div>',
-            '<div class="puntos_poligono_1">',
+            '<div class="puntos_poligono_1_imagen_1">',
             '<div class="punto_poligono">',
             '<div class="formRowRepeatingSection">',
-            '<a href="#" class="btn btn-default" onclick=\'repetirPunto('+newCount+')\'>Añadir punto</a>',
+            '<a href="#" class="btn btn-default" onclick=\'repetirPunto('+newCount+','+n_imagen+')\'>Añadir punto</a>',
             '</div>',
             '<h4>Punto 1</h4>',
             '<hr class="separator"/>',
             '<div class="form-group">',
-            '<label for="x_poligono_1">X</label>',
-            '<input class="form-control" type="number" name="x1_poligono_1" id="x1_poligono_1" />',
+            '<label for="x1_poligono_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x1_poligono_1_imagen_1" id="x1_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="y_poligono_1">Y</label>',
-            '<input class="form-control" type="number" name="y1_poligono_1" id="y1_poligono_1" />',
+            '<label for="y1_poligono_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y1_poligono_1_imagen_1" id="y1_poligono_1_imagen_1" />',
             '</div>',
             '</div>',
             '<div class="punto_poligono">',
             '<h4>Punto 2</h4>',
             '<hr class="separator"/>',
             '<div class="form-group">',
-            '<label for="x_poligono_2">X</label>',
-            '<input class="form-control" type="number" name="x2_poligono_1" id="x2_poligono_1" />',
+            '<label for="x2_poligono_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x2_poligono_1_imagen_1" id="x2_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="y_poligono_2">Y</label>',
-            '<input class="form-control" type="number" name="y2_poligono_1" id="y2_poligono_1" />',
+            '<label for="y2_poligono_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y2_poligono_1_imagen_1" id="y2_poligono_1_imagen_1" />',
             '</div>',
             '</div>',
             '<div class="punto_poligono">',
             '<h4>Punto 3</h4>',
             '<hr class="separator"/>',
             '<div class="form-group">',
-            '<label for="x_poligono_3">X</label>',
-            '<input class="form-control" type="number" name="x3_poligono_1" id="x3_poligono_1" />',
+            '<label for="x3_poligono_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x3_poligono_1_imagen_1" id="x3_poligono_1_imagen_1" />',
             '</div>',
             '<div class="form-group">',
-            '<label for="y_poligono_3">Y</label>',
-            '<input class="form-control" type="number" name="y3_poligono_1" id="y3_poligono_1" />',
+            '<label for="y3_poligono_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y3_poligono_1_imagen_1" id="y3_poligono_1_imagen_1" />',
             '</div>',
             '</div>',
             '</div>',
@@ -234,34 +234,66 @@
 
 
 
-        if ( seccion == ".rectangulo") {
-            if (currentCount == 0 ) { // primer rectangulo
-                var html = rectanguloHtml;
+        if (seccion == ".imagen") {
+            if (currentCount == 0) { // primera imagen
+                var html = imagenHtml;
                 $("form").append(html);
                 $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-            } else { //rectangulo repetido
-                var newSection = rectanguloHtml;
-                var lastRepeatingGroup = $(seccion).last();
-                lastRepeatingGroup.append(newSection)
-                $(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("_" + currentCount, "_" + newCount);
-                    input.name = input.name.replace("_" + currentCount, "_" + newCount);
-                });
-                $(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
-                });
+            } else { //imagen repetida
+                var newSection = imagenHtml;
+                newSection = newSection.replace(/, 1/g, ", " + newCount);
+                newSection = newSection.replace(/_1/g, "_" + newCount);
+                $("form").append(newSection);
                 $(seccion).last().find("h3").each(function (index, h3) {
+                    var h = $(h3);
+                    h.text(h.text().replace(" 1", " " + newCount));
+                    //h.text(h.text().replace(" " + currentCount, " " + newCount));
+
+                });
+                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
+            }
+        }
+
+
+        if ( seccion == ".rectangulo") {
+
+            if (currentCount == 0 ) { // primer rectangulo
+                var html = rectanguloHtml;
+                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                $("form").append(countHtml);
+            } else { //rectangulo repetido
+                var html = rectanguloHtml;
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+
+                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                    input.id = input.id.replace("rectangulo_" + currentCount, "rectangulo_" + newCount);
+                    input.name = input.name.replace("rectangulo_" + currentCount, "rectangulo_" + newCount);
+                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                    var l = $(label);
+                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                    l.attr('for', l.attr('for').replace("rectangulo_" + currentCount,  "rectangulo_" + newCount));
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
                     var h = $(h3);
                     h.text(h.text().replace(" " + currentCount, " " + newCount));
 
                 });
-                $(seccion).last().find("h4").each(function (index, h4) {
+                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
                     var h = $(h4);
                     h.text(h.text().replace(" " + currentCount, " " + newCount));
 
                 });
-                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
+
+
+                //$("form").append(countHtml);
+                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
             }
 
         }
@@ -269,32 +301,42 @@
             if (currentCount == 0) { //primer polígono
 
                 var html = poligonoHtml;
-                $("form").append(html);
-                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                html = html.replace(/poligono_1/g, "poligono_" + newCount);
+                $("#imagen_"+n_imagen).append(html);
+                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                $("form").append(countHtml);
             } else { //polígono repetido
-                var newSection = poligonoHtml;
-                var lastRepeatingGroup = $(seccion).last();
-                lastRepeatingGroup.append(newSection)
-                $(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("_" + currentCount, "_" + newCount);
-                    input.name = input.name.replace("_" + currentCount, "_" + newCount);
+                var html = poligonoHtml;
+                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                html = html.replace(/poligono_1/g, "poligono_" + newCount);
+                $("#imagen_"+n_imagen).append(html);
+                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                    input.id = input.id.replace("poligono_" + currentCount, "poligono_" + newCount);
+                    input.name = input.name.replace("poligono_" + currentCount, "poligono_" + newCount);
+                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
                 });
-                $(seccion).last().find("label").each(function (index, label) {
+                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
                     var l = $(label);
-                    l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
+                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                    l.attr('for', l.attr('for').replace("poligono_" + currentCount,  "poligono_" + newCount));
                 });
-                $(seccion).last().find("h3").each(function (index, h3) {
+                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
                     var h = $(h3);
                     h.text(h.text().replace(" " + currentCount, " " + newCount));
 
                 });
-                $(seccion).last().find("h4").each(function (index, h4) {
+                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
                     var h = $(h4);
                     h.text(h.text().replace(" " + currentCount, " " + newCount));
 
                 });
-                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
+                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
+                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
                  }
+            var countPuntosHtml = '<input name="cuenta_puntos_poligono_'+newCount+'_imagen_'+n_imagen +'" id="'+'cuenta_puntos_poligono_'+newCount+'_imagen_'+n_imagen+'" type="text" style="display: none" value="3" />'
+            $("form").append(countPuntosHtml);
 
         }
         return false;

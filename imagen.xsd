@@ -90,6 +90,7 @@
 
 
     <xs:complexType name="tipoImagen">
+        <xs:sequence>
 
         <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element name="rectangulo" type="lpp:tipoRectangulo" />
@@ -99,6 +100,7 @@
             <xs:element name="poligono" type="lpp:tipoPoligono" />
             <xs:element name="polilinea" type="lpp:tipoPolilinea" />
         </xs:choice>
+        </xs:sequence>
         <xs:attribute name="id" type="xs:string"></xs:attribute>
     </xs:complexType>
 

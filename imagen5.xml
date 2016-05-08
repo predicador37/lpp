@@ -1,0 +1,28 @@
+<lpp:repositorio xmlns:lpp="http://www.uned.es/lpp">
+  <!--1 or more repetitions:-->
+  <lpp:imagen id="string">
+    <!--You have a CHOICE of the next 6 items at this level-->
+
+
+
+    <lpp:poligono>
+      <lpp:color>string</lpp:color>
+      <lpp:borde>3</lpp:borde>
+      <lpp:opacidad>3</lpp:opacidad>
+      <!--3 or more repetitions:-->
+      <lpp:punto>
+        <lpp:x>1.051732E7</lpp:x>
+        <lpp:y>1.051732E7</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>1.051732E7</lpp:x>
+        <lpp:y>1.051732E7</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>1.051732E7</lpp:x>
+        <lpp:y>1.051732E7</lpp:y>
+      </lpp:punto>
+    </lpp:poligono>
+
+  </lpp:imagen>
+</lpp:repositorio>

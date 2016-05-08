@@ -13,16 +13,7 @@
       <lpp:ancho>1.051732E7</lpp:ancho>
       <lpp:alto>1.051732E7</lpp:alto>
     </lpp:rectangulo>
-    <lpp:circulo>
-      <lpp:color>string</lpp:color>
-      <lpp:borde>3</lpp:borde>
-      <lpp:opacidad>3</lpp:opacidad>
-      <lpp:centro>
-        <lpp:x>1.051732E7</lpp:x>
-        <lpp:y>1.051732E7</lpp:y>
-      </lpp:centro>
-      <lpp:radio>1.051732E7</lpp:radio>
-    </lpp:circulo>
+
     <lpp:eclipse>
       <lpp:color>string</lpp:color>
       <lpp:borde>3</lpp:borde>
