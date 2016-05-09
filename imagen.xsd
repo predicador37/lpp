@@ -81,9 +81,8 @@
 
     <xs:complexType name="tipoPolilinea">
         <xs:sequence>
-            <xs:element name="punto" type="lpp:tipoPunto" minOccurs="2" maxOccurs="unbounded"></xs:element>
             <xs:element name="color" type="xs:string"/>
-
+            <xs:element name="punto" type="lpp:tipoPunto" minOccurs="2" maxOccurs="unbounded"></xs:element>
         </xs:sequence>
 
     </xs:complexType>

@@ -149,8 +149,26 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
         
     }
 
-}
 
+    if (isset($_POST['polilineas_imagen_'.$i])){
+        for ($j = 1; $j <= $_POST['polilineas_imagen_'.$i]; ++$j) {
+            $polilinea = $imagen->addChild('polilinea');
+            if ($_POST['color_polilinea_'.$j.'_imagen_'.$i]) {
+                $polilinea->addChild('color', $_POST['color_polilinea_' . $j.'_imagen_'.$i]);
+            }
+            for ($k = 1; $k <= $_POST['cuenta_puntos_polilinea_'.$j.'_imagen_'.$i]; ++$k) {
+                $punto = $polilinea-> addChild('punto');
+                $x = $punto->addChild('x', $_POST['x'.$k.'_polilinea_'.$j.'_imagen_'.$i]);
+                $y = $punto->addChild('y', $_POST['y'.$k.'_polilinea_'.$j.'_imagen_'.$i]);
+            }
+        }
+
+    }
+
+}
+    header("Content-type: text/xml");
+    header('Content-Disposition: attachment; filename="repositorio.xml"');
+    //echo $repositorio->asXML();
     $dom = dom_import_simplexml($repositorio)->ownerDocument;
     $dom->formatOutput = TRUE;
     $formatted = $dom->saveXML();

@@ -29,8 +29,8 @@
       <file leaf-file-name="imagen.xsd" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imagen.xsd">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+            <state relative-caret-position="1155">
+              <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -62,15 +62,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="form.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="331" column="39" selection-start-line="331" selection-start-column="39" selection-end-line="331" selection-end-column="39" />
+            <state relative-caret-position="135">
+              <caret line="130" column="102" selection-start-line="130" selection-start-column="102" selection-end-line="130" selection-end-column="102" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1462806749157" expanded="true" signature="5809:5822" placeholder="..." />
-                <marker date="1462806749157" expanded="true" signature="23300:23313" placeholder="..." />
+                <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
+                <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
+                <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -86,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="form.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="form.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+            <state relative-caret-position="408">
+              <caret line="173" column="33" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="33" />
               <folding>
                 <element signature="e#6#89#0#PHP" expanded="true" />
               </folding>
@@ -135,10 +136,10 @@
         <option value="$PROJECT_DIR$/prueba.xml" />
         <option value="$PROJECT_DIR$/imagen2.xml" />
         <option value="$PROJECT_DIR$/imagen5.xml" />
+        <option value="$PROJECT_DIR$/form.html" />
         <option value="$PROJECT_DIR$/imagen.xsd" />
         <option value="$PROJECT_DIR$/form.php" />
         <option value="$PROJECT_DIR$/form.php" />
-        <option value="$PROJECT_DIR$/form.html" />
       </list>
     </option>
   </component>
@@ -159,10 +160,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="XAMPP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="462" />
-    <option name="y" value="291" />
-    <option name="width" value="1458" />
-    <option name="height" value="789" />
+    <option name="x" value="960" />
+    <option name="y" value="27" />
+    <option name="width" value="961" />
+    <option name="height" value="1054" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -288,20 +289,20 @@
       <option name="presentableId" value="Default" />
       <updated>1456507520640</updated>
       <workItem from="1462559530678" duration="4000000" />
-      <workItem from="1462604589243" duration="31492000" />
+      <workItem from="1462604589243" duration="35134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35492000" />
+    <option name="totallyTimeSpent" value="39134000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="462" y="291" width="1458" height="789" extended-state="0" />
+    <frame x="960" y="27" width="961" height="1054" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2396978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36392075" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4575261" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32799146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -366,8 +367,9 @@
           <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462806749157" expanded="true" signature="5809:5822" placeholder="..." />
-            <marker date="1462806749157" expanded="true" signature="23300:23313" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -431,8 +433,9 @@
           <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462806749157" expanded="true" signature="5809:5822" placeholder="..." />
-            <marker date="1462806749157" expanded="true" signature="23300:23313" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -496,8 +499,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462806749157" expanded="true" signature="5809:5822" placeholder="..." />
-            <marker date="1462806749157" expanded="true" signature="23300:23313" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -719,32 +723,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="130" column="102" selection-start-line="130" selection-start-column="102" selection-end-line="130" selection-end-column="102" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imagen.xsd">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        <state relative-caret-position="1155">
+          <caret line="77" column="26" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="62" column="13" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+        <state relative-caret-position="408">
+          <caret line="173" column="33" selection-start-line="173" selection-start-column="33" selection-end-line="173" selection-end-column="33" />
           <folding>
             <element signature="e#6#89#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="331" column="39" selection-start-line="331" selection-start-column="39" selection-end-line="331" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462806749157" expanded="true" signature="5809:5822" placeholder="..." />
-            <marker date="1462806749157" expanded="true" signature="23300:23313" placeholder="..." />
           </folding>
         </state>
       </provider>
