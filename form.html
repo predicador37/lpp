@@ -123,6 +123,7 @@
             '<h3>Imagen 1</h3>',
             '<div class="formRowRepeatingSection">',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".rectangulo", 1)\'>Añadir rectángulo</a>',
+            '<a href="#" class="btn btn-default" onclick=\'repetir(".circulo", 1)\'>Añadir circulo</a>',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".poligono", 1)\'>Añadir polígono</a>',
             '<hr class="separator"/>',
             '</div>',
@@ -232,7 +233,39 @@
             '</div>',
             '</div>'].join("\n");
 
+        var circuloHtml = [
+            ' <div class="circulo">',
+            '<h3>Círculo 1</h3>',
+            '<div>',
+            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar círculo</a>',
+            '</div>',
+            '<hr class="separator"/>',
 
+            '<div class="form-group">',
+            '<label for="color_circulo_1_imagen_1">Color</label>',
+            '<input class="form-control" type="text" name="color_circulo_1_imagen_1" id="color_circulo_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="borde_circulo_1_imagen_1">Borde</label>',
+            '<input class="form-control" type="number" name="borde_circulo_1_imagen_1" id="borde_circulo_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="opacidad_circulo_1_imagen_1">opacidad</label>',
+            '<input class="form-control" type="number" name="opacidad_circulo_1_imagen_1" id="opacidad_circulo_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="x_circulo_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x_circulo_1_imagen_1" id="x_circulo_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="y_circulo_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y_circulo_1_imagen_1" id="y_circulo_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="radio_circulo_1_imagen_1">Radio</label>',
+            '<input class="form-control" type="number" name="radio_circulo_1_imagen_1" id="radio_circulo_1_imagen_1" />',
+            '</div>'].join("\n");
+        
 
         if (seccion == ".imagen") {
             if (currentCount == 0) { // primera imagen
@@ -339,6 +372,50 @@
             $("form").append(countPuntosHtml);
 
         }
+
+        else if ( seccion == ".circulo") {
+
+            if (currentCount == 0 ) { // primer circulo
+                var html = circuloHtml;
+                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+                $("form").append(countHtml);
+            } else { //circulo repetido
+                var html = circuloHtml;
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+
+                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                    input.id = input.id.replace("circulo_" + currentCount, "circulo_" + newCount);
+                    input.name = input.name.replace("circulo_" + currentCount, "circulo_" + newCount);
+                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                    var l = $(label);
+                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                    l.attr('for', l.attr('for').replace("circulo_" + currentCount,  "circulo_" + newCount));
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                    var h = $(h3);
+                    h.text(h.text().replace(" " + currentCount, " " + newCount));
+
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                    var h = $(h4);
+                    h.text(h.text().replace(" " + currentCount, " " + newCount));
+
+                });
+
+
+                //$("form").append(countHtml);
+                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
+            }
+
+        }
+        
+        
         return false;
     }
 

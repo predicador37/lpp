@@ -43,6 +43,34 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
 
         }
     }
+
+    if (isset($_POST['circulos_imagen_'.$i])){
+        for ($j = 1; $j <= $_POST['circulos_imagen_'.$i]; ++$j) {
+
+            $circulo = $imagen->addChild('circulo');
+            if ($_POST['color_circulo_'.$j.'_imagen_'.$i]) {
+                $circulo->addChild('color', $_POST['color_circulo_'.$j.'_imagen_'.$i]);
+            }
+            if ($_POST['borde_circulo_'.$j.'_imagen_'.$i]) {
+                $circulo->addChild('borde', $_POST['borde_circulo_' . $j.'_imagen_'.$i]);
+            }
+            if ($_POST['opacidad_circulo_'.$j.'_imagen_'.$i]) {
+                $circulo->addChild('opacidad', $_POST['opacidad_circulo_' . $j.'_imagen_'.$i]);
+            }
+            if ($_POST['x_circulo_'.$j.'_imagen_'.$i] && $_POST['y_circulo_'.$j.'_imagen_'.$i]) {
+                $posicion = $circulo->addChild('centro');
+                $posicion->addChild('x', $_POST['x_circulo_'.$j.'_imagen_'.$i]);
+                $posicion->addChild('y', $_POST['y_circulo_'.$j.'_imagen_'.$i]);
+            }
+
+            if ($_POST['radio_circulo_'.$j.'_imagen_'.$i]) {
+                $circulo->addChild('radio', $_POST['radio_circulo_' . $j.'_imagen_'.$i]);
+            }
+
+
+        }
+    }
+    
     if (isset($_POST['poligonos_imagen_'.$i])){
         for ($j = 1; $j <= $_POST['poligonos_imagen_'.$i]; ++$j) {
             $poligono = $imagen>addChild('poligono');
