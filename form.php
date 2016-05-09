@@ -73,7 +73,7 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
     
     if (isset($_POST['poligonos_imagen_'.$i])){
         for ($j = 1; $j <= $_POST['poligonos_imagen_'.$i]; ++$j) {
-            $poligono = $imagen>addChild('poligono');
+            $poligono = $imagen->addChild('poligono');
             if ($_POST['color_poligono_'.$j.'_imagen_'.$i]) {
                 $poligono->addChild('color', $_POST['color_poligono_' . $j.'_imagen_'.$i]);
             }
@@ -82,6 +82,11 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
             }
             if ($_POST['opacidad_poligono_'.$j.'_imagen_'.$i]) {
                 $poligono->addChild('opacidad', $_POST['opacidad_poligono_' . $j.'_imagen_'.$i]);
+            }
+            for ($k = 1; $k <= $_POST['cuenta_puntos_poligono_'.$j.'_imagen_'.$i]; ++$k) {
+                $punto = $poligono-> addChild('punto');
+                $x = $punto->addChild('x', $_POST['x'.$k.'_poligono_'.$j.'_imagen_'.$i]);
+                $y = $punto->addChild('y', $_POST['y'.$k.'_poligono_'.$j.'_imagen_'.$i]);
             }
         }
         
