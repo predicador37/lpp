@@ -45,6 +45,32 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
         }
     }
 
+    if (isset($_POST['lineas_imagen_'.$i])){
+        for ($j = 1; $j <= $_POST['lineas_imagen_'.$i]; ++$j) {
+
+            $linea = $imagen->addChild('linea');
+            if ($_POST['color_linea_'.$j.'_imagen_'.$i]) {
+                $linea->addChild('color', $_POST['color_linea_'.$j.'_imagen_'.$i]);
+            }
+            if ($_POST['grosor_linea_'.$j.'_imagen_'.$i]) {
+                $linea->addChild('grosor', $_POST['grosor_linea_' . $j.'_imagen_'.$i]);
+            }
+
+            if (isset($_POST['x1_linea_'.$j.'_imagen_'.$i]) && isset($_POST['y1_linea_'.$j.'_imagen_'.$i])) {
+                $puntoInicial = $linea->addChild('puntoInicial');
+                $puntoInicial->addChild('x', $_POST['x1_linea_'.$j.'_imagen_'.$i]);
+                $puntoInicial->addChild('y', $_POST['y1_linea_'.$j.'_imagen_'.$i]);
+            }
+
+            if (isset($_POST['x2_linea_'.$j.'_imagen_'.$i]) && isset($_POST['y2_linea_'.$j.'_imagen_'.$i])) {
+                $puntoFinal = $linea->addChild('puntoFinal');
+                $puntoFinal->addChild('x', $_POST['x2_linea_'.$j.'_imagen_'.$i]);
+                $puntoFinal->addChild('y', $_POST['y2_linea_'.$j.'_imagen_'.$i]);
+            }
+
+        }
+    }
+
     if (isset($_POST['circulos_imagen_'.$i])){
         for ($j = 1; $j <= $_POST['circulos_imagen_'.$i]; ++$j) {
 
@@ -59,9 +85,9 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
                 $circulo->addChild('opacidad', $_POST['opacidad_circulo_' . $j.'_imagen_'.$i]);
             }
             if (isset($_POST['x_circulo_'.$j.'_imagen_'.$i]) && isset($_POST['y_circulo_'.$j.'_imagen_'.$i])) {
-                $posicion = $circulo->addChild('centro');
-                $posicion->addChild('x', $_POST['x_circulo_'.$j.'_imagen_'.$i]);
-                $posicion->addChild('y', $_POST['y_circulo_'.$j.'_imagen_'.$i]);
+                $centro = $circulo->addChild('centro');
+                $centro->addChild('x', $_POST['x_circulo_'.$j.'_imagen_'.$i]);
+                $centro->addChild('y', $_POST['y_circulo_'.$j.'_imagen_'.$i]);
             }
 
             if ($_POST['radio_circulo_'.$j.'_imagen_'.$i]) {
@@ -86,9 +112,9 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
                 $elipse->addChild('opacidad', $_POST['opacidad_elipse_' . $j.'_imagen_'.$i]);
             }
             if (isset($_POST['x_elipse_'.$j.'_imagen_'.$i]) && isset($_POST['y_elipse_'.$j.'_imagen_'.$i])) {
-                $posicion = $elipse->addChild('centro');
-                $posicion->addChild('x', $_POST['x_elipse_'.$j.'_imagen_'.$i]);
-                $posicion->addChild('y', $_POST['y_elipse_'.$j.'_imagen_'.$i]);
+                $centro = $elipse->addChild('centro');
+                $centro->addChild('x', $_POST['x_elipse_'.$j.'_imagen_'.$i]);
+                $centro->addChild('y', $_POST['y_elipse_'.$j.'_imagen_'.$i]);
             }
 
             if ($_POST['radio_x_elipse_'.$j.'_imagen_'.$i]) {

@@ -123,6 +123,7 @@
             '<h3>Imagen 1</h3>',
             '<div class="formRowRepeatingSection">',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".rectangulo", 1)\'>Añadir rectángulo</a>',
+            '<a href="#" class="btn btn-default" onclick=\'repetir(".linea", 1)\'>Añadir línea</a>',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".circulo", 1)\'>Añadir circulo</a>',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".elipse", 1)\'>Añadir elipse</a>',
             '<a href="#" class="btn btn-default" onclick=\'repetir(".poligono", 1)\'>Añadir polígono</a>',
@@ -303,6 +304,39 @@
             '<label for="radio_y_elipse_1_imagen_1">Radio Y</label>',
             '<input class="form-control" type="number" name="radio_y_elipse_1_imagen_1" id="radio_y_elipse_1_imagen_1" />',
             '</div>'].join("\n");
+
+        var lineaHtml = [
+            ' <div class="linea">',
+            '<h3>Línea 1</h3>',
+            '<div>',
+            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar línea</a>',
+            '</div>',
+            '<hr class="separator"/>',
+
+            '<div class="form-group">',
+            '<label for="color_linea_1_imagen_1">Color</label>',
+            '<input class="form-control" type="text" name="color_linea_1_imagen_1" id="color_linea_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="grosor_linea_1_imagen_1">Grosor</label>',
+            '<input class="form-control" type="number" name="grosor_linea_1_imagen_1" id="grosor_linea_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="x1_linea_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x1_linea_1_imagen_1" id="x1_linea_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="y1_linea_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y1_linea_1_imagen_1" id="y1_linea_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="x2_linea_1_imagen_1">X</label>',
+            '<input class="form-control" type="number" name="x2_linea_1_imagen_1" id="x2_linea_1_imagen_1" />',
+            '</div>',
+            '<div class="form-group">',
+            '<label for="y2_linea_1_imagen_1">Y</label>',
+            '<input class="form-control" type="number" name="y2_linea_1_imagen_1" id="y2_linea_1_imagen_1" />',
+            '</div>'].join("\n");
         
 
         if (seccion == ".imagen") {
@@ -476,6 +510,49 @@
                     var l = $(label);
                     l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
                     l.attr('for', l.attr('for').replace("elipse_" + currentCount,  "elipse_" + newCount));
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                    var h = $(h3);
+                    h.text(h.text().replace(" " + currentCount, " " + newCount));
+
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                    var h = $(h4);
+                    h.text(h.text().replace(" " + currentCount, " " + newCount));
+
+                });
+
+
+                //$("form").append(countHtml);
+                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
+            }
+
+        }
+
+        else if ( seccion == ".linea") {
+
+            if (currentCount == 0 ) { // primer linea
+                var html = lineaHtml;
+                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                $("form").append(countHtml);
+            } else { //linea repetido
+                var html = lineaHtml;
+                html = html.replace("(1)", "(" + n_imagen + ")");
+                $("#imagen_"+n_imagen).append(html);
+
+                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                    input.id = input.id.replace("linea_" + currentCount, "linea_" + newCount);
+                    input.name = input.name.replace("linea_" + currentCount, "linea_" + newCount);
+                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                });
+                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                    var l = $(label);
+                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                    l.attr('for', l.attr('for').replace("linea_" + currentCount,  "linea_" + newCount));
                 });
                 $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
                     var h = $(h3);

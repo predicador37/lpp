@@ -61,10 +61,10 @@
 
     <xs:complexType name="tipoLinea">
         <xs:sequence>
-            <xs:element name="puntoInicial" type="lpp:tipoPunto" ></xs:element>
-            <xs:element name="puntoFinal" type="lpp:tipoPunto" />
             <xs:element name="color" type="xs:string"/>
             <xs:element name="grosor" type="xs:int"/>
+            <xs:element name="puntoInicial" type="lpp:tipoPunto" ></xs:element>
+            <xs:element name="puntoFinal" type="lpp:tipoPunto" />
         </xs:sequence>
 
     </xs:complexType>
