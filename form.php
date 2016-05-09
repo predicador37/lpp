@@ -15,6 +15,7 @@
 for ($i = 1; $i <= $_POST['imagens']; ++$i) {
     $imagen =  $repositorio->addChild('imagen');
     $imagen->addAttribute('id', $i);
+
     if (isset($_POST['rectangulos_imagen_'.$i])){
         for ($j = 1; $j <= $_POST['rectangulos_imagen_'.$i]; ++$j) {
 
@@ -28,7 +29,7 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
             if ($_POST['opacidad_rectangulo_'.$j.'_imagen_'.$i]) {
                 $rectangulo->addChild('opacidad', $_POST['opacidad_rectangulo_' . $j.'_imagen_'.$i]);
             }
-            if ($_POST['x_rectangulo_'.$j.'_imagen_'.$i] && $_POST['y_rectangulo_'.$j.'_imagen_'.$i]) {
+            if (isset($_POST['x_rectangulo_'.$j.'_imagen_'.$i]) && isset($_POST['y_rectangulo_'.$j.'_imagen_'.$i])) {
                 $posicion = $rectangulo->addChild('posicion');
                 $posicion->addChild('x', $_POST['x_rectangulo_'.$j.'_imagen_'.$i]);
                 $posicion->addChild('y', $_POST['y_rectangulo_'.$j.'_imagen_'.$i]);
@@ -57,7 +58,7 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
             if ($_POST['opacidad_circulo_'.$j.'_imagen_'.$i]) {
                 $circulo->addChild('opacidad', $_POST['opacidad_circulo_' . $j.'_imagen_'.$i]);
             }
-            if ($_POST['x_circulo_'.$j.'_imagen_'.$i] && $_POST['y_circulo_'.$j.'_imagen_'.$i]) {
+            if (isset($_POST['x_circulo_'.$j.'_imagen_'.$i]) && isset($_POST['y_circulo_'.$j.'_imagen_'.$i])) {
                 $posicion = $circulo->addChild('centro');
                 $posicion->addChild('x', $_POST['x_circulo_'.$j.'_imagen_'.$i]);
                 $posicion->addChild('y', $_POST['y_circulo_'.$j.'_imagen_'.$i]);
@@ -65,6 +66,36 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
 
             if ($_POST['radio_circulo_'.$j.'_imagen_'.$i]) {
                 $circulo->addChild('radio', $_POST['radio_circulo_' . $j.'_imagen_'.$i]);
+            }
+
+
+        }
+    }
+
+    if (isset($_POST['elipses_imagen_'.$i])){
+        for ($j = 1; $j <= $_POST['elipses_imagen_'.$i]; ++$j) {
+
+            $elipse = $imagen->addChild('elipse');
+            if ($_POST['color_elipse_'.$j.'_imagen_'.$i]) {
+                $elipse->addChild('color', $_POST['color_elipse_'.$j.'_imagen_'.$i]);
+            }
+            if ($_POST['borde_elipse_'.$j.'_imagen_'.$i]) {
+                $elipse->addChild('borde', $_POST['borde_elipse_' . $j.'_imagen_'.$i]);
+            }
+            if ($_POST['opacidad_elipse_'.$j.'_imagen_'.$i]) {
+                $elipse->addChild('opacidad', $_POST['opacidad_elipse_' . $j.'_imagen_'.$i]);
+            }
+            if (isset($_POST['x_elipse_'.$j.'_imagen_'.$i]) && isset($_POST['y_elipse_'.$j.'_imagen_'.$i])) {
+                $posicion = $elipse->addChild('centro');
+                $posicion->addChild('x', $_POST['x_elipse_'.$j.'_imagen_'.$i]);
+                $posicion->addChild('y', $_POST['y_elipse_'.$j.'_imagen_'.$i]);
+            }
+
+            if ($_POST['radio_x_elipse_'.$j.'_imagen_'.$i]) {
+                $elipse->addChild('radio_x', $_POST['radio_x_elipse_' . $j.'_imagen_'.$i]);
+            }
+            if ($_POST['radio_y_elipse_'.$j.'_imagen_'.$i]) {
+                $elipse->addChild('radio_y', $_POST['radio_y_elipse_' . $j.'_imagen_'.$i]);
             }
 
 
@@ -93,23 +124,6 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
     }
 
 }
-
-/*
-    for ($i = 1; $i <= $_POST['poligonos']; ++$i) {
-    $poligono = $repositorio->addChild('poligono');
-        if ($_POST['color_poligono_'.$i]) {
-            $poligono->addChild('color', $_POST['color_poligono_' . $i]);
-        }
-        if ($_POST['borde_poligono_'.$i]) {
-            $poligono->addChild('borde', $_POST['borde_poligono_' . $i]);
-        }
-        if ($_POST['opacidad_poligono_'.$i]) {
-            $poligono->addChild('opacidad', $_POST['opacidad_poligono_' . $i]);
-        }
-
-   }*/
-
-
 
     $dom = dom_import_simplexml($repositorio)->ownerDocument;
     $dom->formatOutput = TRUE;

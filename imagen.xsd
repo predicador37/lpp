@@ -95,7 +95,7 @@
         <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element name="rectangulo" type="lpp:tipoRectangulo" />
             <xs:element name="circulo" type="lpp:tipoCirculo" />
-            <xs:element name="eclipse" type="lpp:tipoElipse" />
+            <xs:element name="elipse" type="lpp:tipoElipse" />
             <xs:element name="linea" type="lpp:tipoLinea" />
             <xs:element name="poligono" type="lpp:tipoPoligono" />
             <xs:element name="polilinea" type="lpp:tipoPolilinea" />
