@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<lpp:repositorio xmlns:lpp="http://www.uned.es/lpp">
+  <lpp:imagen id="1">
+    <lpp:polilinea>
+      <lpp:color>red</lpp:color>
+      <lpp:punto>
+        <lpp:x>0</lpp:x>
+        <lpp:y>0</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>25</lpp:x>
+        <lpp:y>25</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>70</lpp:x>
+        <lpp:y>70</lpp:y>
+      </lpp:punto>
+    </lpp:polilinea>
+  </lpp:imagen>
+</lpp:repositorio>
