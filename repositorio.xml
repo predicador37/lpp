@@ -2,25 +2,25 @@
 <lpp:repositorio xmlns:lpp="http://www.uned.es/lpp">
   <lpp:imagen id="1">
     <lpp:rectangulo>
-      <lpp:color>black</lpp:color>
+      <lpp:color>blue</lpp:color>
       <lpp:borde>10</lpp:borde>
       <lpp:opacidad>100</lpp:opacidad>
       <lpp:posicion>
         <lpp:x>0</lpp:x>
         <lpp:y>0</lpp:y>
       </lpp:posicion>
-      <lpp:ancho>50</lpp:ancho>
-      <lpp:alto>25</lpp:alto>
+      <lpp:ancho>100</lpp:ancho>
+      <lpp:alto>100</lpp:alto>
     </lpp:rectangulo>
     <lpp:circulo>
       <lpp:color>red</lpp:color>
-      <lpp:borde>20</lpp:borde>
+      <lpp:borde>5</lpp:borde>
       <lpp:opacidad>80</lpp:opacidad>
       <lpp:centro>
-        <lpp:x>10</lpp:x>
-        <lpp:y>10</lpp:y>
+        <lpp:x>50</lpp:x>
+        <lpp:y>50</lpp:y>
       </lpp:centro>
-      <lpp:radio>60</lpp:radio>
+      <lpp:radio>40</lpp:radio>
     </lpp:circulo>
   </lpp:imagen>
   <lpp:imagen id="2">
@@ -52,15 +52,15 @@
   </lpp:imagen>
   <lpp:imagen id="3">
     <lpp:linea>
-      <lpp:color>black</lpp:color>
-      <lpp:grosor>50</lpp:grosor>
+      <lpp:color>blue</lpp:color>
+      <lpp:grosor>5</lpp:grosor>
       <lpp:puntoInicial>
         <lpp:x>0</lpp:x>
         <lpp:y>0</lpp:y>
       </lpp:puntoInicial>
       <lpp:puntoFinal>
-        <lpp:x>25</lpp:x>
-        <lpp:y>25</lpp:y>
+        <lpp:x>200</lpp:x>
+        <lpp:y>200</lpp:y>
       </lpp:puntoFinal>
     </lpp:linea>
     <lpp:elipse>
@@ -121,15 +121,15 @@
       <lpp:radio>30</lpp:radio>
     </lpp:circulo>
     <lpp:elipse>
-      <lpp:color>black</lpp:color>
-      <lpp:borde>40</lpp:borde>
+      <lpp:color>purple</lpp:color>
+      <lpp:borde>3</lpp:borde>
       <lpp:opacidad>90</lpp:opacidad>
       <lpp:centro>
-        <lpp:x>25</lpp:x>
-        <lpp:y>25</lpp:y>
+        <lpp:x>200</lpp:x>
+        <lpp:y>80</lpp:y>
       </lpp:centro>
-      <lpp:radio_x>30</lpp:radio_x>
-      <lpp:radio_y>10</lpp:radio_y>
+      <lpp:radio_x>100</lpp:radio_x>
+      <lpp:radio_y>50</lpp:radio_y>
     </lpp:elipse>
   </lpp:imagen>
   <lpp:imagen id="6">
