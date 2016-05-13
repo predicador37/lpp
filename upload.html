@@ -36,7 +36,7 @@
                 contentType: false,
                 success: function (data, status)
                 {
-                    $('#svg').append(data);
+                    document.getElementById("selectImage").innerHTML=data;
 
                 },
                 error: function (xhr, desc, err)
@@ -47,6 +47,21 @@
             });
 
         });
+
+        function sendImage(selectedValue)
+        {
+            //make the ajax call
+            $.ajax({
+                url: 'xmlparse.php',
+                type: 'POST',
+                data: {option : selectedValue},
+                dataType: 'text',
+                success: function(data, status) {
+                    $('#svg').empty();
+                    $('#svg').append(data);
+                }
+            });
+        }
 /*
         $(document).on("submit", "form", function(event)
         {
@@ -92,7 +107,9 @@
 
     </form>
     <div id="selectorImagen">
-<select></select>
+<select id="selectImage" onchange="sendImage(this.value)">
+    <option >Seleccione imagen</option>
+</select>
     </div>
     <div id="svg">
 

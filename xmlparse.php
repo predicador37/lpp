@@ -6,66 +6,21 @@
  * Time: 20:58
  */
 
-
-//$file = 'test.xml';
-if ($_POST["action"] == "upload")
-{
-    if ($_FILES["file"]["tmp_name"])
-    {
-        $file = $_FILES["file"]["tmp_name"];
-
-$svg = array();
-
-function inicio($parser, $nombre, $atributos)
-{
-    global $svg;
-    $tag=array("nombre"=>$nombre,"atributos"=>$atributos);
-    array_push($svg,$tag);
-
-}
-
-function data($parser, $data)
-{
-    global $svg,$i;
-
-    if(trim($data))
-    {
-        $svg[count($svg)-1]['data']=$data;
-    }
-}
-
-function fin($parser, $nombre)
-{
-    global $svg;
-    $svg[count($svg)-2]['hijos'][] = $svg[count($svg)-1];
-    array_pop($svg);
-}
-
-$xml_parser = xml_parser_create();
-xml_set_element_handler($xml_parser, "inicio", "fin");
-xml_set_character_data_handler($xml_parser, "data");
-
-$data = xml_parse($xml_parser,file_get_contents($file));
-if(!$data) {
-    die(sprintf("XML error: %s at line %d",
-        xml_error_string(xml_get_error_code($xml_parser)),
-        xml_get_current_line_number($xml_parser)));
-}
-
-xml_parser_free($xml_parser);
-        
+session_start();
+$svg = $_SESSION['svg'];
+$n_images = $_POST['option'];
         
 
-if($svg[0]["hijos"][0]["hijos"][0]["nombre"] == "LPP:POLILINEA"){
-    $color = $svg[0]["hijos"][0]["hijos"][0]["hijos"][0]["data"];
+if($svg[$n_images-1]["hijos"][0]["hijos"][0]["nombre"] == "LPP:POLILINEA"){
+    $color = $svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"][0]["data"];
     $puntos = "";
-    for ($i=1; $i < count( $svg[0]["hijos"][0]["hijos"][0]["hijos"]);++$i ) {
-        if (array_key_exists("data", $svg[0]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][0])) {
-            $puntos.=$svg[0]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][0]["data"] . ",";
+    for ($i=1; $i < count( $svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"]);++$i ) {
+        if (array_key_exists("data", $svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][0])) {
+            $puntos.=$svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][0]["data"] . ",";
         }
         else { $puntos .= "0" . ",";}
-        if (array_key_exists("data",$svg[0]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][1])) {
-            $puntos.=$svg[0]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][1]["data"] . " ";
+        if (array_key_exists("data",$svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][1])) {
+            $puntos.=$svg[$n_images-1]["hijos"][0]["hijos"][0]["hijos"][$i]["hijos"][1]["data"] . " ";
         }
         else { $puntos.= "0" . " ";}
     }
@@ -83,12 +38,4 @@ echo '<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" xmlns:xli
 echo $polilinea;
 echo '</svg>';
 
-       
-    }
-    else
-    {
-        print "<p>Upload failed.</p>";
-    }
-}
-print_r($svg);
 ?>

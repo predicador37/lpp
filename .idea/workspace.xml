@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22867cd3-c2fb-4065-a53a-1a74e53a4a00" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/getimages.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/toSVG.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/xmlparse.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/getimages.php" afterPath="$PROJECT_DIR$/getimages.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.xml" afterPath="$PROJECT_DIR$/test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload.html" afterPath="$PROJECT_DIR$/upload.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/xmlparse.php" afterPath="$PROJECT_DIR$/xmlparse.php" />
     </list>
     <ignored path="untitled.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,20 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="imagen.xsd" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/imagen.xsd">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1230">
-              <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="formulario.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/formulario.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1996">
+            <state relative-caret-position="152715">
               <caret line="10181" column="73" selection-start-line="10181" selection-start-column="73" selection-end-line="10181" selection-end-column="73" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -60,13 +50,13 @@
       <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+            <state relative-caret-position="375">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
-                <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
-                <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
+                <marker date="1463123066104" expanded="true" signature="6069:6082" placeholder="..." />
+                <marker date="1463123066104" expanded="true" signature="25813:25826" placeholder="..." />
+                <marker date="1463123066104" expanded="true" signature="28445:28458" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -85,7 +75,7 @@
       <file leaf-file-name="form.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
+            <state relative-caret-position="2580">
               <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="2" />
               <folding>
                 <element signature="e#6#89#0#PHP" expanded="true" />
@@ -97,8 +87,8 @@
       <file leaf-file-name="xmlparse.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xmlparse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="93" column="2" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="2" />
+            <state relative-caret-position="345">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding>
                 <element signature="e#6#89#0#PHP" expanded="true" />
               </folding>
@@ -106,23 +96,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getimages.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getimages.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/getimages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-              <folding>
-                <element signature="e#1140#2009#0#PHP" expanded="false" />
-              </folding>
+            <state relative-caret-position="434">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="upload.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/upload.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+            <state relative-caret-position="374">
+              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -131,8 +119,8 @@
       <file leaf-file-name="test.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="330">
+              <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -141,8 +129,18 @@
       <file leaf-file-name="imagen2.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imagen2.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="225">
               <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repositorio.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/repositorio.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="51" column="15" selection-start-line="25" selection-start-column="2" selection-end-line="51" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -180,16 +178,18 @@
         <option value="$PROJECT_DIR$/form.php" />
         <option value="$PROJECT_DIR$/form.php" />
         <option value="$PROJECT_DIR$/toSVG.php" />
+        <option value="$PROJECT_DIR$/test.xml" />
         <option value="$PROJECT_DIR$/xmlparse.php" />
-        <option value="$PROJECT_DIR$/upload.html" />
         <option value="$PROJECT_DIR$/getimages.php" />
+        <option value="$PROJECT_DIR$/upload.html" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers>
@@ -203,8 +203,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="XAMPP" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="443" />
-    <option name="y" value="291" />
+    <option name="x" value="573" />
+    <option name="y" value="112" />
     <option name="width" value="1458" />
     <option name="height" value="789" />
   </component>
@@ -233,6 +233,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,8 +255,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,10 +320,10 @@
       <method />
     </configuration>
     <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.form.html" />
-      <item index="1" class="java.lang.String" itemvalue="PHP Web Application.SVG" />
-      <item index="2" class="java.lang.String" itemvalue="PHP Web Application.xmlparse" />
-      <item index="3" class="java.lang.String" itemvalue="PHP Web Application.lpp" />
+      <item index="0" class="java.lang.String" itemvalue="PHP Web Application.SVG" />
+      <item index="1" class="java.lang.String" itemvalue="PHP Web Application.xmlparse" />
+      <item index="2" class="java.lang.String" itemvalue="PHP Web Application.lpp" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.form.html" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -346,20 +346,19 @@
       <updated>1456507520640</updated>
       <workItem from="1462559530678" duration="4000000" />
       <workItem from="1462604589243" duration="49719000" />
+      <workItem from="1463123076283" duration="5478000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53719000" />
+    <option name="totallyTimeSpent" value="59197000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="443" y="291" width="1458" height="789" extended-state="0" />
+    <frame x="573" y="112" width="1458" height="789" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2396978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4575261" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -367,9 +366,11 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29210135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29210135" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4575261" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -395,14 +396,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imagen.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="17" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formulario.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152715">
@@ -423,9 +416,9 @@
           <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -489,9 +482,9 @@
           <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -555,9 +548,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -749,14 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imagen2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imagen.xsd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1230">
@@ -765,17 +750,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/formulario.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1996">
+        <state relative-caret-position="152715">
           <caret line="10181" column="73" selection-start-line="10181" selection-start-column="73" selection-end-line="10181" selection-end-column="73" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -783,19 +760,6 @@
             <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1462812615896" expanded="true" signature="6069:6082" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="25813:25826" placeholder="..." />
-            <marker date="1462812615896" expanded="true" signature="28445:28458" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -812,15 +776,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="53" />
-          <folding>
-            <element signature="e#36#119#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
+        <state relative-caret-position="2580">
           <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="2" />
           <folding>
             <element signature="e#6#89#0#PHP" expanded="true" />
@@ -828,10 +789,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/imagen2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositorio.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="15" selection-start-line="25" selection-start-column="2" selection-end-line="51" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1463123066104" expanded="true" signature="6069:6082" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="25813:25826" placeholder="..." />
+            <marker date="1463123066104" expanded="true" signature="28445:28458" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/getimages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/xmlparse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="93" column="2" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="2" />
+        <state relative-caret-position="345">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
           <folding>
             <element signature="e#6#89#0#PHP" expanded="true" />
           </folding>
@@ -840,19 +846,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/upload.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="94" column="17" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="17" />
+        <state relative-caret-position="374">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/getimages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-          <folding>
-            <element signature="e#1140#2009#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

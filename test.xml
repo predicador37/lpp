@@ -17,4 +17,31 @@
       </lpp:punto>
     </lpp:polilinea>
   </lpp:imagen>
+  <lpp:imagen id="2">
+    <lpp:poligono>
+      <lpp:color>blue</lpp:color>
+      <lpp:borde>25</lpp:borde>
+      <lpp:opacidad>25</lpp:opacidad>
+      <lpp:punto>
+        <lpp:x>0</lpp:x>
+        <lpp:y>0</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>50</lpp:x>
+        <lpp:y>10</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>60</lpp:x>
+        <lpp:y>25</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>70</lpp:x>
+        <lpp:y>35</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>80</lpp:x>
+        <lpp:y>40</lpp:y>
+      </lpp:punto>
+    </lpp:poligono>
+  </lpp:imagen>
 </lpp:repositorio>
