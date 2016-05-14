@@ -26,7 +26,8 @@
         {
             event.preventDefault();
 
-            var url="getimages.php";
+            var url=$(this).attr("action");
+            var id = $(this).attr('id');
             $.ajax({
                 url: url,
                 type: 'POST',
@@ -36,7 +37,13 @@
                 contentType: false,
                 success: function (data, status)
                 {
-                    document.getElementById("selectImage").innerHTML=data;
+                    if (id == "formRepo") {
+                        document.getElementById("selectImage").innerHTML = data;
+                    }
+                    else {
+                        $('#svg').empty();
+                        $('#svg').append(data);
+                    }
 
                 },
                 error: function (xhr, desc, err)
@@ -55,10 +62,12 @@
                 url: 'xmlparse.php',
                 type: 'POST',
                 data: {option : selectedValue},
-                dataType: 'text',
+                dataType: "json",
                 success: function(data, status) {
                     $('#svg').empty();
-                    $('#svg').append(data);
+                    $('#edit').empty();
+                    $('#svg').append(data.imagen);
+                    $('#edit').append(data.edit);
                 }
             });
         }
@@ -66,9 +75,9 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="input-group">
 
-    <form enctype='multipart/form-data' method="POST" action="xmlparse.php" name="formRepo" id="formRepo">
+
+    <form enctype='multipart/form-data' method="POST" action="getimages.php" name="formRepo" id="formRepo">
         <div class="form-group">
        <input type='hidden' name='action' value='upload' />
        <input type='file' name='file' />
@@ -87,8 +96,14 @@
     <div id="svg">
 
     </div>
+    <form enctype='multipart/form-data' method="POST" action="updatesvg.php" name="formSvg" id="formSvg">
+    <div id="edit">
+
     </div>
+        <input type="submit" value="Actualizar SVG" />
+    </form>
 </div>
+
 
 
 </body>

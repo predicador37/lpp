@@ -134,21 +134,41 @@
   </lpp:imagen>
   <lpp:imagen id="6">
     <lpp:polilinea>
-      <lpp:color>brown</lpp:color>
+      <lpp:color>red</lpp:color>
       <lpp:punto>
-        <lpp:x>15</lpp:x>
-        <lpp:y>20</lpp:y>
+        <lpp:x>0</lpp:x>
+        <lpp:y>40</lpp:y>
       </lpp:punto>
       <lpp:punto>
-        <lpp:x>46</lpp:x>
-        <lpp:y>30</lpp:y>
+        <lpp:x>40</lpp:x>
+        <lpp:y>40</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>40</lpp:x>
+        <lpp:y>80</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>80</lpp:x>
+        <lpp:y>80</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>80</lpp:x>
+        <lpp:y>120</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>120</lpp:x>
+        <lpp:y>120</lpp:y>
+      </lpp:punto>
+      <lpp:punto>
+        <lpp:x>120</lpp:x>
+        <lpp:y>160</lpp:y>
       </lpp:punto>
     </lpp:polilinea>
   </lpp:imagen>
   <lpp:imagen id="7">
     <lpp:linea>
       <lpp:color>brown</lpp:color>
-      <lpp:grosor>50</lpp:grosor>
+      <lpp:grosor>4</lpp:grosor>
       <lpp:puntoInicial>
         <lpp:x>25</lpp:x>
         <lpp:y>25</lpp:y>
@@ -160,19 +180,19 @@
     </lpp:linea>
     <lpp:poligono>
       <lpp:color>blue</lpp:color>
-      <lpp:borde>50</lpp:borde>
-      <lpp:opacidad>90</lpp:opacidad>
+      <lpp:borde>25</lpp:borde>
+      <lpp:opacidad>25</lpp:opacidad>
       <lpp:punto>
-        <lpp:x>0</lpp:x>
-        <lpp:y>0</lpp:y>
+        <lpp:x>200</lpp:x>
+        <lpp:y>10</lpp:y>
       </lpp:punto>
       <lpp:punto>
-        <lpp:x>15</lpp:x>
-        <lpp:y>50</lpp:y>
+        <lpp:x>250</lpp:x>
+        <lpp:y>190</lpp:y>
       </lpp:punto>
       <lpp:punto>
-        <lpp:x>40</lpp:x>
-        <lpp:y>67</lpp:y>
+        <lpp:x>160</lpp:x>
+        <lpp:y>210</lpp:y>
       </lpp:punto>
     </lpp:poligono>
   </lpp:imagen>
