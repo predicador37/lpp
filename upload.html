@@ -16,19 +16,18 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- -->
     <script type="text/javascript">
 
-
-        $(document).on("submit", "form", function(event)
-        {
+        //Interceptor de formularios múltiples en la página
+        $(document).on("submit", "form", function (event) {
             if (event.target.id == 'formExport') return;
             event.preventDefault();
 
-            var url=$(this).attr("action");
+            var url = $(this).attr("action");
             var id = $(this).attr('id');
             $.ajax({
                 url: url,
@@ -37,37 +36,37 @@
                 data: new FormData(this),
                 processData: false,
                 contentType: false,
-                success: function (data, status)
-                {
+                success: function (data, status) {
                     if (id == "formRepo") {
+                        //Incorpora las opciones para el selector
                         document.getElementById("selectImage").innerHTML = data;
                     }
-                    else if (id=="formSvg") {
+                    else if (id == "formSvg") {
+                        //Actualiza el SVG en el contenedor y la variable de envío para su actualización
                         $('#svg').empty();
                         $('#svg').append(data);
                         $('#repo').val(data);
                     }
 
                 },
-                error: function (xhr, desc, err)
-                {
+                error: function (xhr, desc, err) {
                     console.log("error" + err);
 
                 }
             });
 
         });
-
-        function sendImage(selectedValue)
-        {
+        //Envía valor de imagen seleccionada al servidor y recibe un SVG y el HTML del formulario asociado, que añade
+        //a los contenedores correspondientes
+        function sendImage(selectedValue) {
             $("#idImage").val($("#selectImage").val());
             //make the ajax call
             $.ajax({
                 url: 'xmlparse.php',
                 type: 'POST',
-                data: {option : selectedValue},
+                data: {option: selectedValue},
                 dataType: "json",
-                success: function(data, status) {
+                success: function (data, status) {
                     $('#svg').empty();
                     $('#edit').empty();
                     $('#svg').append(data.imagen);
@@ -81,44 +80,49 @@
 <body>
 <div class="container-fluid">
 
-
+    <!-- Formulario para subir el repositorio XML -->
     <form enctype='multipart/form-data' method="POST" action="getimages.php" name="formRepo" id="formRepo">
         <div class="form-group">
-       <input type='hidden' name='action' value='upload' />
-       <input type='file' name='file' />
-
-        <input type="submit" value="Subir XML" />
-
-            </div>
-
-
+            <label for="file">Subida de archivo</label>
+            <input type='hidden' name='action' value='upload'/>
+            <input id='file' name='file' type='file' name='file' style="width: 400px;"/>
+        </div>
+        <div>
+            <input class="btn btn-default btn-primary-spacing" style="width: 200px;" type="submit" value="Subir XML"/>
+        </div>
     </form>
+    <!-- Selector de imagen del repositorio que se poblará mediante AJAX-->
     <div id="selectorImagen">
-<select id="selectImage" onchange="sendImage(this.value)">
-    <option >Seleccione imagen</option>
-</select>
+        <div class="form-group">
+            <select id="selectImage" class="form-control" style="width: 200px;" onchange="sendImage(this.value)">
+                <option>Seleccione imagen</option>
+            </select>
+        </div>
     </div>
 
     <div id="svg">
 
     </div>
+    <!-- Formulario para actualizar la visualización del SVG -->
     <form enctype='multipart/form-data' method="POST" action="updatesvg.php" name="formSvg" id="formSvg">
-    <div id="edit">
-
-    </div>
-        <input type="submit" value="Actualizar SVG" />
+        <div id="edit">
+        </div>
+        <div>
+            <input class="btn btn-default btn-primary-spacing" style="width: 200px;" type="submit"
+                   value="Actualizar SVG"/>
+        </div>
     </form>
 
+    <!-- Formulario para exportar el repositorio modificado de nuevo a XML -->
     <form enctype='multipart/form-data' method="POST" action="export.php" name="formExport" id="formExport">
         <div id="export">
-
         </div>
-        <input type='hidden' id='repo' name='repo' value='' />
-        <input type='hidden' id='idImage' name='idImage' value='' />
-        <input type="submit" value="Exportar repositorio" />
+        <input type='hidden' id='repo' name='repo' value=''/>
+        <input type='hidden' id='idImage' name='idImage' value=''/>
+        <input class="btn btn-default btn-primary-spacing" style="width: 200px;" type="submit"
+               value="Exportar repositorio"/>
     </form>
 </div>
-
 
 
 </body>

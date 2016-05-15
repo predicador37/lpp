@@ -15,658 +15,653 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //Inicialización de contadores
+        $(document).ready(function () {
+            currentCount = 0;
+            newCount = 0;
+        });
+
+        //Repetición de un elemento punto para polígonos y polilíneas
+        function repetirPunto(seccion, parentCount, n_imagen) {
+
+            var currentCount = $(".puntos_" + seccion + "_" + parentCount + "_imagen_" + n_imagen).children().length;
+            var newCount = currentCount + 1;
+            var newParentCount = parentCount;
+            $('input[name="cuenta_puntos_' + seccion + '_' + parentCount + '_imagen_' + n_imagen + '"]').attr('value', newCount);
+
+
+            var puntoHtml = ['<div class="punto_' + seccion + '">',
+                '<h4>Punto 2</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x2_' + seccion + '_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x2_' + seccion + '_1_imagen_1" id="x2_' + seccion + '_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y2_' + seccion + '_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y2_' + seccion + '_1_imagen_1" id="y2_' + seccion + '_1_imagen_1" />',
+                '</div>',
+                '</div>'].join('\n');
+
+
+            var lastRepeatingGroup = $(".puntos_" + seccion + "_" + parentCount + "_imagen_" + n_imagen).last();
+            var newSection = puntoHtml;
+            newSection = newSection.replace(/imagen_1/g, "imagen_" + n_imagen);
+            newSection = newSection.replace(/x2/g, "x" + newCount);
+            newSection = newSection.replace(/y2/g, "y" + newCount);
+            lastRepeatingGroup.append(newSection);
+
+            $(".puntos_" + seccion + "_" + parentCount + "_imagen_" + n_imagen).children().last().find("input").each(function (index, input) {
+                input.id = input.id.replace("_1_", "_" + newParentCount + "_");
+                input.name = input.name.replace("_1_", "_" + newParentCount + "_");
+            });
+            $(".puntos_" + seccion + "_" + parentCount + "_imagen_" + n_imagen).children().last().find("label").each(function (index, label) {
+                var l = $(label);
+                l.attr('for', l.attr('for').replace("_1_", "_" + newParentCount + "_"));
+                //l.attr('for', l.attr('for').replace(/x2/g, "x" + newParentCount));
+                //l.attr('for', l.attr('for').replace(/y2/g, "y" + newParentCount));
+            });
+            $(".puntos_" + seccion + "_" + parentCount + "_imagen_" + n_imagen).children().last().find("h4").each(function (index, h4) {
+                var h = $(h4);
+                h.text(h.text().replace(" 2", " " + newCount));
+
+            });
+        }
+        //Borrado de un elemento perteneciente a una imagen (figura) del DOM
+        function borrar(element, n_imagen, count) {
+            if (document.getElementById($(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value") - 1 == 0) {
+                document.getElementById($(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).remove();
+                if ($(element).parent('div').parent('div').attr('class') == 'poligono') {
+                    document.getElementById("cuenta_puntos_poligono_" + count + "_imagen_" + n_imagen).remove();
+                }
+                else if ($(element).parent('div').parent('div').attr('class') == "polilinea") {
+                    document.getElementById("cuenta_puntos_polilinea_" + count + "_imagen_" + n_imagen).remove();
+                }
+
+            } else {
+
+                $('input[name="' + $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen + '"]').attr('value', document.getElementById($(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value") - 1);
+            }
+            $(element).parent('div').parent('div').remove();
+
+            return false;
+        }
+        //Repetición de una sección del DOM, para crear nuevas figuras dentro de una imagen o nuevas imágenes
+        function repetir(seccion, n_imagen) {
+
+            var currentCount;
+
+            if (seccion == ".imagen") {
+                currentCount = $(seccion).length;
+            }
+            else {
+                currentCount = $("#imagen_" + n_imagen).find(seccion).length;
+
+            }
+            var newCount = currentCount + 1;
+            var countHtml = '<input name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '" id="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '" type="text" style="display: none" value="' + newCount + '" />'
+
+            //HTML para una nueva imagen
+            var imagenHtml = [
+                ' <div id="imagen_1" class="imagen">',
+                '<h3>Imagen 1</h3>',
+                '<div class="formRowRepeatingSection">',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".rectangulo", 1)\'>Añadir rectángulo</a>',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".linea", 1)\'>Añadir línea</a>',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".circulo", 1)\'>Añadir circulo</a>',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".elipse", 1)\'>Añadir elipse</a>',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".poligono", 1)\'>Añadir polígono</a>',
+                '<a href="#" class="btn btn-default" onclick=\'repetir(".polilinea", 1)\'>Añadir polilínea</a>',
+                '<hr class="separator"/>',
+                '</div>',
+                '</div>'
+            ].join("\n");
+
+            //HTML inicial para una figura de tipo rectángulo
+            var rectanguloHtml = [
+                ' <div class="rectangulo">',
+                '<h3>Rectángulo 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar rectángulo</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_rectangulo_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_rectangulo_1_imagen_1" id="color_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="borde_rectangulo_1_imagen_1">Borde</label>',
+                '<input class="form-control" type="number" name="borde_rectangulo_1_imagen_1" id="borde_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="opacidad_rectangulo_1_imagen_1">opacidad</label>',
+                '<input class="form-control" type="number" name="opacidad_rectangulo_1_imagen_1" id="opacidad_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="x_rectangulo_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x_rectangulo_1_imagen_1" id="x_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y_rectangulo_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y_rectangulo_1_imagen_1" id="y_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="ancho_rectangulo_1_imagen_1">Ancho</label>',
+                '<input class="form-control" type="number" name="ancho_rectangulo_1_imagen_1" id="ancho_rectangulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="alto_rectangulo_1_imagen_1">Alto</label>',
+                '<input class="form-control" type="number" name="alto_rectangulo_1_imagen_1" id="alto_rectangulo_1_imagen_1" />',
+                '</div>',
+
+                '</div>'
+            ].join("\n");
+
+            //HTML inicial para una figura de tipo polígono
+            var poligonoHtml = [
+                ' <div class="poligono">',
+                '<h3>Polígono 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar polígono</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_poligono_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_poligono_1_imagen_1" id="color_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="borde_poligono_1_imagen_1">Borde</label>',
+                '<input class="form-control" type="number" name="borde_poligono_1_imagen_1" id="borde_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="opacidad_poligono_1_imagen_1">opacidad</label>',
+                '<input class="form-control" type="number" name="opacidad_poligono_1_imagen_1" id="opacidad_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="puntos_poligono_1_imagen_1">',
+                '<div class="punto_poligono">',
+                '<div class="formRowRepeatingSection">',
+                '<a href="#" class="btn btn-default" onclick=\'repetirPunto("poligono",' + newCount + ',' + n_imagen + ')\'>Añadir punto</a>',
+                '</div>',
+                '<h4>Punto 1</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x1_poligono_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x1_poligono_1_imagen_1" id="x1_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y1_poligono_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y1_poligono_1_imagen_1" id="y1_poligono_1_imagen_1" />',
+                '</div>',
+                '</div>',
+                '<div class="punto_poligono">',
+                '<h4>Punto 2</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x2_poligono_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x2_poligono_1_imagen_1" id="x2_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y2_poligono_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y2_poligono_1_imagen_1" id="y2_poligono_1_imagen_1" />',
+                '</div>',
+                '</div>',
+                '<div class="punto_poligono">',
+                '<h4>Punto 3</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x3_poligono_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x3_poligono_1_imagen_1" id="x3_poligono_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y3_poligono_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y3_poligono_1_imagen_1" id="y3_poligono_1_imagen_1" />',
+                '</div>',
+                '</div>',
+                '</div>',
+                '</div>'].join("\n");
+
+            //HTML inicial para una figura de tipo polilínea
+            var polilineaHtml = [
+                ' <div class="polilinea">',
+                '<h3>Polilínea 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar polilínea</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_polilinea_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_polilinea_1_imagen_1" id="color_polilinea_1_imagen_1" />',
+                '</div>',
+                '<div class="puntos_polilinea_1_imagen_1">',
+                '<div class="punto_polilinea">',
+                '<div class="formRowRepeatingSection">',
+                '<a href="#" class="btn btn-default" onclick=\'repetirPunto("polilinea",' + newCount + ',' + n_imagen + ')\'>Añadir punto</a>',
+                '</div>',
+                '<h4>Punto 1</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x1_polilinea_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x1_polilinea_1_imagen_1" id="x1_polilinea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y1_polilinea_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y1_polilinea_1_imagen_1" id="y1_polilinea_1_imagen_1" />',
+                '</div>',
+                '</div>',
+                '<div class="punto_polilinea">',
+                '<h4>Punto 2</h4>',
+                '<hr class="separator"/>',
+                '<div class="form-group">',
+                '<label for="x2_polilinea_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x2_polilinea_1_imagen_1" id="x2_polilinea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y2_polilinea_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y2_polilinea_1_imagen_1" id="y2_polilinea_1_imagen_1" />',
+                '</div>',
+                '</div>',
+                '</div>',
+                '</div>'].join("\n");
+
+            //HTML inicial para una figura de tipo círculo
+            var circuloHtml = [
+                ' <div class="circulo">',
+                '<h3>Círculo 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar círculo</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_circulo_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_circulo_1_imagen_1" id="color_circulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="borde_circulo_1_imagen_1">Borde</label>',
+                '<input class="form-control" type="number" name="borde_circulo_1_imagen_1" id="borde_circulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="opacidad_circulo_1_imagen_1">opacidad</label>',
+                '<input class="form-control" type="number" name="opacidad_circulo_1_imagen_1" id="opacidad_circulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="x_circulo_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x_circulo_1_imagen_1" id="x_circulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y_circulo_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y_circulo_1_imagen_1" id="y_circulo_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="radio_circulo_1_imagen_1">Radio</label>',
+                '<input class="form-control" type="number" name="radio_circulo_1_imagen_1" id="radio_circulo_1_imagen_1" />',
+                '</div>'].join("\n");
+
+            //HTML inicial para una figura de tipo elipse
+            var elipseHtml = [
+                ' <div class="elipse">',
+                '<h3>elipse 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar elipse</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_elipse_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_elipse_1_imagen_1" id="color_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="borde_elipse_1_imagen_1">Borde</label>',
+                '<input class="form-control" type="number" name="borde_elipse_1_imagen_1" id="borde_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="opacidad_elipse_1_imagen_1">opacidad</label>',
+                '<input class="form-control" type="number" name="opacidad_elipse_1_imagen_1" id="opacidad_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="x_elipse_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x_elipse_1_imagen_1" id="x_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y_elipse_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y_elipse_1_imagen_1" id="y_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="radio_x_elipse_1_imagen_1">Radio X</label>',
+                '<input class="form-control" type="number" name="radio_x_elipse_1_imagen_1" id="radio_x_elipse_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="radio_y_elipse_1_imagen_1">Radio Y</label>',
+                '<input class="form-control" type="number" name="radio_y_elipse_1_imagen_1" id="radio_y_elipse_1_imagen_1" />',
+                '</div>'].join("\n");
+
+            //HTML inicial para una figura de tipo línea
+            var lineaHtml = [
+                ' <div class="linea">',
+                '<h3>Línea 1</h3>',
+                '<div>',
+                '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, ' + newCount + ')\'>Eliminar línea</a>',
+                '</div>',
+                '<hr class="separator"/>',
+
+                '<div class="form-group">',
+                '<label for="color_linea_1_imagen_1">Color</label>',
+                '<input class="form-control" type="text" name="color_linea_1_imagen_1" id="color_linea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="grosor_linea_1_imagen_1">Grosor</label>',
+                '<input class="form-control" type="number" name="grosor_linea_1_imagen_1" id="grosor_linea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="x1_linea_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x1_linea_1_imagen_1" id="x1_linea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y1_linea_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y1_linea_1_imagen_1" id="y1_linea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="x2_linea_1_imagen_1">X</label>',
+                '<input class="form-control" type="number" name="x2_linea_1_imagen_1" id="x2_linea_1_imagen_1" />',
+                '</div>',
+                '<div class="form-group">',
+                '<label for="y2_linea_1_imagen_1">Y</label>',
+                '<input class="form-control" type="number" name="y2_linea_1_imagen_1" id="y2_linea_1_imagen_1" />',
+                '</div>'].join("\n");
+
+            //Generación de imágenes
+            if (seccion == ".imagen") {
+                if (currentCount == 0) { // primera imagen
+                    var html = imagenHtml;
+                    $("form").append(html);
+                    $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                } else { //imagen repetida
+                    var newSection = imagenHtml;
+                    newSection = newSection.replace(/, 1/g, ", " + newCount);
+                    newSection = newSection.replace(/_1/g, "_" + newCount);
+                    $("form").append(newSection);
+                    $(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
+                }
+            }
+
+            //Generación de rectángulos
+            if (seccion == ".rectangulo") {
+
+                if (currentCount == 0) { // primer rectangulo
+                    var html = rectanguloHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //rectangulo repetido
+                    var html = rectanguloHtml;
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("rectangulo_1", "rectangulo_" + newCount);
+                        input.name = input.name.replace("rectangulo_1", "rectangulo_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("rectangulo_1", "rectangulo_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+
+            }
+            //Generación de polígonos
+            else if (seccion == ".poligono") {
+                if (currentCount == 0) { //primer polígono
+
+                    var html = poligonoHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace(/poligono_1/g, "poligono_" + newCount);
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //polígono repetido
+                    var html = poligonoHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace(/poligono_1/g, "poligono_" + newCount);
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("poligono_1", "poligono_" + newCount);
+                        input.name = input.name.replace("poligono_1", "poligono_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("poligono_1" , "poligono_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+                var countPuntosHtml = '<input name="cuenta_puntos_poligono_' + newCount + '_imagen_' + n_imagen + '" id="' + 'cuenta_puntos_poligono_' + newCount + '_imagen_' + n_imagen + '" type="text" style="display: none" value="3" />'
+                $("form").append(countPuntosHtml);
+
+            }
+
+            //Generación de polilíneas
+            else if (seccion == ".polilinea") {
+                if (currentCount == 0) { //primera polilinea
+
+                    var html = polilineaHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace(/polilinea_1/g, "polilinea_" + newCount);
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //polilinea repetido
+                    var html = polilineaHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace(/polilinea_1/g, "polilinea_" + newCount);
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("polilinea_1", "polilinea_" + newCount);
+                        input.name = input.name.replace("polilinea_1", "polilinea_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("polilinea_1", "polilinea_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+                var countPuntosHtml = '<input name="cuenta_puntos_polilinea_' + newCount + '_imagen_' + n_imagen + '" id="' + 'cuenta_puntos_polilinea_' + newCount + '_imagen_' + n_imagen + '" type="text" style="display: none" value="2" />'
+                $("form").append(countPuntosHtml);
+
+            }
+
+            //Generación de círculos
+            else if (seccion == ".circulo") {
+                if (currentCount == 0) { // primer circulo
+                    var html = circuloHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //circulo repetido
+                    var html = circuloHtml;
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("circulo_1", "circulo_" + newCount);
+                        input.name = input.name.replace("circulo_1", "circulo_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("circulo_1", "circulo_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+
+            }
+
+            //Generación de elipses
+            else if (seccion == ".elipse") {
+
+                if (currentCount == 0) { // primer elipse
+                    var html = elipseHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //elipse repetido
+                    var html = elipseHtml;
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("elipse_1", "elipse_" + newCount);
+                        input.name = input.name.replace("elipse_1", "elipse_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("elipse_1" , "elipse_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+
+            }
+
+            //Generación de líneas
+            else if (seccion == ".linea") {
+
+                if (currentCount == 0) { // primer linea
+                    var html = lineaHtml;
+                    html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    $("#imagen_" + n_imagen).append(html);
+                    $("form").append(countHtml);
+                } else { //linea repetido
+
+                    var html = lineaHtml;
+                    html = html.replace("(1)", "(" + n_imagen + ")");
+                    //Ajuste de identificadores
+                    $("#imagen_" + n_imagen).append(html);
+                    $("#imagen_" + n_imagen).find(seccion).last().find("input").each(function (index, input) {
+                        input.id = input.id.replace("linea_1", "linea_" + newCount);
+                        input.name = input.name.replace("linea_1", "linea_" + newCount);
+                        input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
+                        input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("label").each(function (index, label) {
+                        var l = $(label);
+                        l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
+                        l.attr('for', l.attr('for').replace("linea_1" , "linea_" + newCount));
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
+                        var h = $(h3);
+                        h.text(h.text().replace(" 1" , " " + newCount));
+
+                    });
+                    $("#imagen_" + n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
+                        var h = $(h4);
+
+                        h.text(h.text().replace(" 1", " " + newCount));
+
+                    });
+                    $('input[name="' + seccion.replace(".", "") + 's_imagen_' + n_imagen + '"]').attr('value', newCount);
+                }
+
+            }
+
+
+            return false;
+        }
+
+
+    </script>
 </head>
 <div class="container-fluid">
+    <!-- -Formulario para el envío de los datos del repositorio -->
     <form method="POST" action="form.php" name="form">
         <div class="formRowRepeatingSection">
-        <a href="#" class="btn btn-default" onclick='repetir(".imagen")'>Añadir imagen</a>
-        <button type="submit" class="btn btn-default">Generar XML</button>
-            </div>
+            <a href="#" class="btn btn-default" onclick='repetir(".imagen")'>Añadir imagen</a>
+            <button type="submit" class="btn btn-default">Generar XML</button>
+        </div>
         <hr class="separator"/>
-
-        <input name="imagens" id="imagens" type="text" style="display: none" value="0" />
+        <input name="imagens" id="imagens" type="text" style="display: none" value="0"/>
     </form>
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        currentCount=0;
-        newCount=0;
-    });
 
-    $(document).on('click', '.borrarElemento', function () {
-        $('input[name="' + $(this).parent('div').parent('div').attr('class') + "s_imagen_" + '"]').attr('value',document.getElementById( $(this).parent('div').parent('div').attr('class') + "s").getAttribute("value")-1);
-        $(this).parent('div').parent('div').remove();
-        return false;
-    });
-
-    function repetirPunto(seccion, parentCount, n_imagen) {
-
-        var currentCount = $(".puntos_"+ seccion +"_" + parentCount + "_imagen_" + n_imagen).children().length;
-        var newCount = currentCount + 1;
-        var newParentCount = parentCount + 1;
-        $('input[name="cuenta_puntos_'+seccion+'_'+ parentCount+'_imagen_'+n_imagen +'"]').attr('value', newCount);
-
-
-        var puntoHtml = [ '<div class="punto_'+seccion+'">',
-            '<h4>Punto 2</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x2_'+seccion+'_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x2_'+seccion+'_1_imagen_1" id="x2_'+seccion+'_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y2_'+seccion+'_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y2_'+seccion+'_1_imagen_1" id="y2_'+seccion+'_1_imagen_1" />',
-            '</div>',
-            '</div>'].join('\n');
-
-
-        var lastRepeatingGroup = $(".puntos_"+seccion+"_" +  parentCount + "_imagen_" + n_imagen).last();
-        var newSection = puntoHtml;
-        newSection = newSection.replace(/imagen_1/g, "imagen_"+n_imagen);
-        newSection = newSection.replace(/x2/g, "x"+newCount);
-        newSection = newSection.replace(/y2/g, "y"+newCount);
-        lastRepeatingGroup.append(newSection);
-
-        $(".puntos_"+seccion+"_" + parentCount + "_imagen_" + n_imagen).children().last().find("input").each(function (index, input) {
-            input.id = input.id.replace("_" + currentCount, "_" + newCount);
-            input.name = input.name.replace("_" + currentCount, "_" + newCount);
-        });
-        $(".puntos_"+seccion+"_" + parentCount + "_imagen_" + n_imagen).children().last().find("label").each(function (index, label) {
-            var l = $(label);
-            l.attr('for', l.attr('for').replace("_" + currentCount, "_" + newCount));
-            l.attr('for', l.attr('for').replace(/x2/g, "x" + newParentCount));
-            l.attr('for', l.attr('for').replace(/y2/g, "y" + newParentCount));
-        });
-        $(".puntos_"+seccion+"_" + parentCount + "_imagen_" + n_imagen).children().last().find("h4").each(function (index, h4) {
-            var h = $(h4);
-            h.text(h.text().replace(" 2", " " + newCount));
-
-        });
-    }
-
-    function borrar(element, n_imagen, count) {
-        if (document.getElementById( $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value")-1 == 0) {
-            document.getElementById( $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).remove();
-            if ($(element).parent('div').parent('div').attr('class') == 'poligono') {
-                document.getElementById("cuenta_puntos_poligono_"+count+"_imagen_"+n_imagen).remove();
-            }
-            else if ($(element).parent('div').parent('div').attr('class') == "polilinea") {
-                document.getElementById("cuenta_puntos_polilinea_"+count+"_imagen_"+n_imagen).remove();
-            }
-
-    }else {
-
-            $('input[name="' + $(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen + '"]').attr('value', document.getElementById($(element).parent('div').parent('div').attr('class') + "s_imagen_" + n_imagen).getAttribute("value") - 1);
-        }
-        $(element).parent('div').parent('div').remove();
-
-        return false;
-    }
-
-    function repetir(seccion, n_imagen) {
-
-        var currentCount;
-
-        if (seccion == ".imagen") {
-            var currentCount= $(seccion).length;
-        }
-        else {
-            var currentCount = $("#imagen_" + n_imagen).find(seccion).length;
-        }
-        var newCount = currentCount + 1;
-        var countHtml = '<input name="'+seccion.replace(".", "")+'s_imagen_'+n_imagen +'" id="'+seccion.replace(".", "")+'s_imagen_'+n_imagen+'" type="text" style="display: none" value="'+newCount+'" />'
-
-        var imagenHtml = [
-            ' <div id="imagen_1" class="imagen">',
-            '<h3>Imagen 1</h3>',
-            '<div class="formRowRepeatingSection">',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".rectangulo", 1)\'>Añadir rectángulo</a>',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".linea", 1)\'>Añadir línea</a>',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".circulo", 1)\'>Añadir circulo</a>',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".elipse", 1)\'>Añadir elipse</a>',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".poligono", 1)\'>Añadir polígono</a>',
-            '<a href="#" class="btn btn-default" onclick=\'repetir(".polilinea", 1)\'>Añadir polilínea</a>',
-            '<hr class="separator"/>',
-            '</div>',
-            '</div>'
-        ].join("\n");
-
-        var rectanguloHtml = [
-            ' <div class="rectangulo">',
-            '<h3>Rectángulo 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar rectángulo</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_rectangulo_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_rectangulo_1_imagen_1" id="color_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="borde_rectangulo_1_imagen_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_rectangulo_1_imagen_1" id="borde_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="opacidad_rectangulo_1_imagen_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_rectangulo_1_imagen_1" id="opacidad_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="x_rectangulo_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x_rectangulo_1_imagen_1" id="x_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y_rectangulo_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y_rectangulo_1_imagen_1" id="y_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="ancho_rectangulo_1_imagen_1">Ancho</label>',
-            '<input class="form-control" type="number" name="ancho_rectangulo_1_imagen_1" id="ancho_rectangulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="alto_rectangulo_1_imagen_1">Alto</label>',
-            '<input class="form-control" type="number" name="alto_rectangulo_1_imagen_1" id="alto_rectangulo_1_imagen_1" />',
-            '</div>',
-
-            '</div>'
-        ].join("\n");
-
-        var poligonoHtml = [
-            ' <div class="poligono">',
-            '<h3>Polígono 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar polígono</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_poligono_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_poligono_1_imagen_1" id="color_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="borde_poligono_1_imagen_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_poligono_1_imagen_1" id="borde_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="opacidad_poligono_1_imagen_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_poligono_1_imagen_1" id="opacidad_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="puntos_poligono_1_imagen_1">',
-            '<div class="punto_poligono">',
-            '<div class="formRowRepeatingSection">',
-            '<a href="#" class="btn btn-default" onclick=\'repetirPunto("poligono",'+newCount+','+n_imagen+')\'>Añadir punto</a>',
-            '</div>',
-            '<h4>Punto 1</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x1_poligono_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x1_poligono_1_imagen_1" id="x1_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y1_poligono_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y1_poligono_1_imagen_1" id="y1_poligono_1_imagen_1" />',
-            '</div>',
-            '</div>',
-            '<div class="punto_poligono">',
-            '<h4>Punto 2</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x2_poligono_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x2_poligono_1_imagen_1" id="x2_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y2_poligono_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y2_poligono_1_imagen_1" id="y2_poligono_1_imagen_1" />',
-            '</div>',
-            '</div>',
-            '<div class="punto_poligono">',
-            '<h4>Punto 3</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x3_poligono_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x3_poligono_1_imagen_1" id="x3_poligono_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y3_poligono_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y3_poligono_1_imagen_1" id="y3_poligono_1_imagen_1" />',
-            '</div>',
-            '</div>',
-            '</div>',
-            '</div>'].join("\n");
-
-        var polilineaHtml = [
-            ' <div class="polilinea">',
-            '<h3>Polilínea 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar polilínea</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_polilinea_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_polilinea_1_imagen_1" id="color_polilinea_1_imagen_1" />',
-            '</div>',
-            '<div class="puntos_polilinea_1_imagen_1">',
-            '<div class="punto_polilinea">',
-            '<div class="formRowRepeatingSection">',
-            '<a href="#" class="btn btn-default" onclick=\'repetirPunto("polilinea",'+newCount+','+n_imagen+')\'>Añadir punto</a>',
-            '</div>',
-            '<h4>Punto 1</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x1_polilinea_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x1_polilinea_1_imagen_1" id="x1_polilinea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y1_polilinea_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y1_polilinea_1_imagen_1" id="y1_polilinea_1_imagen_1" />',
-            '</div>',
-            '</div>',
-            '<div class="punto_polilinea">',
-            '<h4>Punto 2</h4>',
-            '<hr class="separator"/>',
-            '<div class="form-group">',
-            '<label for="x2_polilinea_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x2_polilinea_1_imagen_1" id="x2_polilinea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y2_polilinea_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y2_polilinea_1_imagen_1" id="y2_polilinea_1_imagen_1" />',
-            '</div>',
-            '</div>',
-            '</div>',
-            '</div>'].join("\n");
-
-        var circuloHtml = [
-            ' <div class="circulo">',
-            '<h3>Círculo 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar círculo</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_circulo_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_circulo_1_imagen_1" id="color_circulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="borde_circulo_1_imagen_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_circulo_1_imagen_1" id="borde_circulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="opacidad_circulo_1_imagen_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_circulo_1_imagen_1" id="opacidad_circulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="x_circulo_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x_circulo_1_imagen_1" id="x_circulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y_circulo_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y_circulo_1_imagen_1" id="y_circulo_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="radio_circulo_1_imagen_1">Radio</label>',
-            '<input class="form-control" type="number" name="radio_circulo_1_imagen_1" id="radio_circulo_1_imagen_1" />',
-            '</div>'].join("\n");
-
-        var elipseHtml = [
-            ' <div class="elipse">',
-            '<h3>elipse 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar elipse</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_elipse_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_elipse_1_imagen_1" id="color_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="borde_elipse_1_imagen_1">Borde</label>',
-            '<input class="form-control" type="number" name="borde_elipse_1_imagen_1" id="borde_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="opacidad_elipse_1_imagen_1">opacidad</label>',
-            '<input class="form-control" type="number" name="opacidad_elipse_1_imagen_1" id="opacidad_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="x_elipse_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x_elipse_1_imagen_1" id="x_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y_elipse_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y_elipse_1_imagen_1" id="y_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="radio_x_elipse_1_imagen_1">Radio X</label>',
-            '<input class="form-control" type="number" name="radio_x_elipse_1_imagen_1" id="radio_x_elipse_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="radio_y_elipse_1_imagen_1">Radio Y</label>',
-            '<input class="form-control" type="number" name="radio_y_elipse_1_imagen_1" id="radio_y_elipse_1_imagen_1" />',
-            '</div>'].join("\n");
-
-        var lineaHtml = [
-            ' <div class="linea">',
-            '<h3>Línea 1</h3>',
-            '<div>',
-            '<a href="#" class="btn btn-default" onclick=\'borrar(this, 1, '+newCount+')\'>Eliminar línea</a>',
-            '</div>',
-            '<hr class="separator"/>',
-
-            '<div class="form-group">',
-            '<label for="color_linea_1_imagen_1">Color</label>',
-            '<input class="form-control" type="text" name="color_linea_1_imagen_1" id="color_linea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="grosor_linea_1_imagen_1">Grosor</label>',
-            '<input class="form-control" type="number" name="grosor_linea_1_imagen_1" id="grosor_linea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="x1_linea_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x1_linea_1_imagen_1" id="x1_linea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y1_linea_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y1_linea_1_imagen_1" id="y1_linea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="x2_linea_1_imagen_1">X</label>',
-            '<input class="form-control" type="number" name="x2_linea_1_imagen_1" id="x2_linea_1_imagen_1" />',
-            '</div>',
-            '<div class="form-group">',
-            '<label for="y2_linea_1_imagen_1">Y</label>',
-            '<input class="form-control" type="number" name="y2_linea_1_imagen_1" id="y2_linea_1_imagen_1" />',
-            '</div>'].join("\n");
-        
-
-        if (seccion == ".imagen") {
-            if (currentCount == 0) { // primera imagen
-                var html = imagenHtml;
-                $("form").append(html);
-                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-            } else { //imagen repetida
-                var newSection = imagenHtml;
-                newSection = newSection.replace(/, 1/g, ", " + newCount);
-                newSection = newSection.replace(/_1/g, "_" + newCount);
-                $("form").append(newSection);
-                $(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" 1", " " + newCount));
-                    //h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
-            }
-        }
-
-
-        if ( seccion == ".rectangulo") {
-
-            if (currentCount == 0 ) { // primer rectangulo
-                var html = rectanguloHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-                $("form").append(countHtml);
-            } else { //rectangulo repetido
-                var html = rectanguloHtml;
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("rectangulo_" + currentCount, "rectangulo_" + newCount);
-                    input.name = input.name.replace("rectangulo_" + currentCount, "rectangulo_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("rectangulo_" + currentCount,  "rectangulo_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-
-
-                //$("form").append(countHtml);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-            }
-
-        }
-        else if (seccion == ".poligono") {
-            if (currentCount == 0) { //primer polígono
-
-                var html = poligonoHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace(/poligono_1/g, "poligono_" + newCount);
-                $("#imagen_"+n_imagen).append(html);
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-                $("form").append(countHtml);
-            } else { //polígono repetido
-                var html = poligonoHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace(/poligono_1/g, "poligono_" + newCount);
-                $("#imagen_"+n_imagen).append(html);
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("poligono_" + currentCount, "poligono_" + newCount);
-                    input.name = input.name.replace("poligono_" + currentCount, "poligono_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("poligono_" + currentCount,  "poligono_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-                 }
-            var countPuntosHtml = '<input name="cuenta_puntos_poligono_'+newCount+'_imagen_'+n_imagen +'" id="'+'cuenta_puntos_poligono_'+newCount+'_imagen_'+n_imagen+'" type="text" style="display: none" value="3" />'
-            $("form").append(countPuntosHtml);
-
-        }
-
-        else if (seccion == ".polilinea") {
-            if (currentCount == 0) { //primera polilinea
-
-                var html = polilineaHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace(/polilinea_1/g, "polilinea_" + newCount);
-                $("#imagen_"+n_imagen).append(html);
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-                $("form").append(countHtml);
-            } else { //polilinea repetido
-                var html = polilineaHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace(/polilinea_1/g, "polilinea_" + newCount);
-                $("#imagen_"+n_imagen).append(html);
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("polilinea_" + currentCount, "polilinea_" + newCount);
-                    input.name = input.name.replace("polilinea_" + currentCount, "polilinea_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("polilinea_" + currentCount,  "polilinea_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value',newCount);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-            }
-            var countPuntosHtml = '<input name="cuenta_puntos_polilinea_'+newCount+'_imagen_'+n_imagen +'" id="'+'cuenta_puntos_polilinea_'+newCount+'_imagen_'+n_imagen+'" type="text" style="display: none" value="2" />'
-            $("form").append(countPuntosHtml);
-
-        }
-
-        else if ( seccion == ".circulo") {
-
-            if (currentCount == 0 ) { // primer circulo
-                var html = circuloHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-                $("form").append(countHtml);
-            } else { //circulo repetido
-                var html = circuloHtml;
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("circulo_" + currentCount, "circulo_" + newCount);
-                    input.name = input.name.replace("circulo_" + currentCount, "circulo_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("circulo_" + currentCount,  "circulo_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-
-
-                //$("form").append(countHtml);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-            }
-
-        }
-
-        else if ( seccion == ".elipse") {
-
-            if (currentCount == 0 ) { // primer elipse
-                var html = elipseHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-                $("form").append(countHtml);
-            } else { //elipse repetido
-                var html = elipseHtml;
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("elipse_" + currentCount, "elipse_" + newCount);
-                    input.name = input.name.replace("elipse_" + currentCount, "elipse_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("elipse_" + currentCount,  "elipse_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-
-
-                //$("form").append(countHtml);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-            }
-
-        }
-
-        else if ( seccion == ".linea") {
-
-            if (currentCount == 0 ) { // primer linea
-                var html = lineaHtml;
-                html = html.replace(/imagen_1/g, "imagen_" + n_imagen);
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-                //$('input[name="' + seccion.replace(".", "") + "s" + '"]').attr('value', newCount);
-                $("form").append(countHtml);
-            } else { //linea repetido
-                var html = lineaHtml;
-                html = html.replace("(1)", "(" + n_imagen + ")");
-                $("#imagen_"+n_imagen).append(html);
-
-                $("#imagen_"+n_imagen).find(seccion).last().find("input").each(function (index, input) {
-                    input.id = input.id.replace("linea_" + currentCount, "linea_" + newCount);
-                    input.name = input.name.replace("linea_" + currentCount, "linea_" + newCount);
-                    input.id = input.id.replace("imagen_1", "imagen_" + n_imagen);
-                    input.name = input.name.replace("imagen_1", "imagen_" + n_imagen);
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("label").each(function (index, label) {
-                    var l = $(label);
-                    l.attr('for', l.attr('for').replace("imagen_1", "imagen_" + n_imagen));
-                    l.attr('for', l.attr('for').replace("linea_" + currentCount,  "linea_" + newCount));
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h3").each(function (index, h3) {
-                    var h = $(h3);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-                $("#imagen_"+n_imagen).find(seccion).last().find("h4").each(function (index, h4) {
-                    var h = $(h4);
-                    h.text(h.text().replace(" " + currentCount, " " + newCount));
-
-                });
-
-
-                //$("form").append(countHtml);
-                $('input[name="'+seccion.replace(".", "")+'s_imagen_' + n_imagen +'"]').attr('value',newCount);
-            }
-
-        }
-        
-        
-        return false;
-    }
-
-
-</script>
 </body>
 </html>
