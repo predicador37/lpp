@@ -129,15 +129,15 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '<hr class="separator"/>' .
             '<div class="form-group">' .
             '<label for="color_poligono' . $i . '">Color</label>' .
-            '<input class="form-control" value="' . $color . '" type="text" name="color_poligono' . $i . '" id="color_poligono' . $i . '" />' .
+            '<input class="form-control" value="' . $color . '" type="text" name="color_poligono' . $i . '" id="color_poligono' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_poligono' . $i . '">Borde</label>' .
-            '<input class="form-control"  value="' . $borde . '" type="number" name="borde_poligono' . $i . '" id="borde_poligono' . $i . '" />' .
+            '<input class="form-control"  value="' . $borde . '" type="number" name="borde_poligono' . $i . '" id="borde_poligono' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_poligono' . $i . '">Opacidad</label>' .
-            '<input class="form-control" value="' . $opacidad . '" type="number" name="opacidad_poligono' . $i . '" id="opacidad_poligono' . $i . '" />' .
+            '<input class="form-control" value="' . $opacidad . '" type="number" step="any" name="opacidad_poligono' . $i . '" id="opacidad_poligono' . $i . '" min="0" max="1"  required/>' .
             '</div>' .
             '<div class="puntos_poligono' . $i . '">';
         for ($j = 3; $j < $n_puntos + 3; ++$j) {
@@ -147,11 +147,11 @@ for ($i = 0; $i < $n_figuras; ++$i) {
                 '<hr class="separator"/>' .
                 '<div class="form-group">' .
                 '<label for="x' . ($j - 2) . '_poligono' . $i . '">X</label>' .
-                '<input class="form-control" value="' . (array_key_exists("data", $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][0]) ? $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][0]["data"] : 0) . '" type="number" name="x' . ($j - 2) . '_poligono' . $i . '" id="x' . ($j - 2) . '_poligono' . $i . '" />' .
+                '<input class="form-control" value="' . (array_key_exists("data", $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][0]) ? $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][0]["data"] : 0) . '" type="number" step="any" name="x' . ($j - 2) . '_poligono' . $i . '" id="x' . ($j - 2) . '_poligono' . $i . '"  required />' .
                 '</div>' .
                 '<div class="form-group">' .
                 '<label for="y' . ($j - 2) . '_poligono' . $i . '">Y</label>' .
-                '<input class="form-control" value="' . (array_key_exists("data", $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][1]) ? $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][1]["data"] : 0) . '" type="number" name="y' . ($j - 2) . '_poligono' . $i . '" id="y' . ($j - 2) . '_poligono' . $i . '" />' .
+                '<input class="form-control" value="' . (array_key_exists("data", $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][1]) ? $svg[0]["hijos"][$n_images - 1]["hijos"][$i]["hijos"][$j]["hijos"][1]["data"] : 0) . '" type="number" step="any" name="y' . ($j - 2) . '_poligono' . $i . '" id="y' . ($j - 2) . '_poligono' . $i . '" required />' .
                 '</div>' .
                 '</div>';
         }
@@ -216,31 +216,31 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '<hr class="separator"/>' .
             '<div class="form-group">' .
             '<label for="color_rectangulo' . $i . '">Color</label>' .
-            '<input value="' . $color . '" class="form-control" type="text" name="color_rectangulo' . $i . '" id="color_rectangulo' . $i . '" />' .
+            '<input value="' . $color . '" class="form-control" type="text" name="color_rectangulo' . $i . '" id="color_rectangulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_rectangulo' . $i . '">Borde</label>' .
-            '<input value="' . $borde . '" class="form-control" type="number" name="borde_rectangulo' . $i . '" id="borde_rectangulo' . $i . '" />' .
+            '<input value="' . $borde . '" class="form-control" type="number" name="borde_rectangulo' . $i . '" id="borde_rectangulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
-            '<label for="opacidad_rectangulo' . $i . '">opacidad</label>' .
-            '<input value="' . $opacidad . '" class="form-control" type="number" name="opacidad_rectangulo' . $i . '" id="opacidad_rectangulo' . $i . '" />' .
+            '<label for="opacidad_rectangulo' . $i . '">Opacidad</label>' .
+            '<input value="' . $opacidad . '" class="form-control" type="number" step="any" name="opacidad_rectangulo' . $i . '" id="opacidad_rectangulo' . $i . '" min="0" max="1"  required/>' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="x_rectangulo' . $i . '">X</label>' .
-            '<input value="' . $x . '" class="form-control" type="number" name="x_rectangulo' . $i . '" id="x_rectangulo' . $i . '" />' .
+            '<input value="' . $x . '" class="form-control" type="number" step="any" name="x_rectangulo' . $i . '" id="x_rectangulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="y_rectangulo' . $i . '">Y</label>' .
-            '<input value="' . $y . '" class="form-control" type="number" name="y_rectangulo' . $i . '" id="y_rectangulo' . $i . '" />' .
+            '<input value="' . $y . '" class="form-control" type="number" step="any" name="y_rectangulo' . $i . '" id="y_rectangulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="width_rectangulo' . $i . '">Ancho</label>' .
-            '<input value="' . $ancho . '" class="form-control" type="number" name="width_rectangulo' . $i . '" id="width_rectangulo' . $i . '" />' .
+            '<input value="' . $ancho . '" class="form-control" type="number" step="any" name="width_rectangulo' . $i . '" id="width_rectangulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="height_rectangulo' . $i . '">Alto</label>' .
-            '<input value="' . $alto . '" class="form-control" type="number" name="height_rectangulo' . $i . '" id="height_rectangulo' . $i . '" />' .
+            '<input value="' . $alto . '" class="form-control" type="number" step="any" name="height_rectangulo' . $i . '" id="height_rectangulo' . $i . '" required />' .
             '</div>' .
             '</div>';
         $edit .= $rectanguloHtml;
@@ -297,27 +297,27 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '<hr class="separator"/>' .
             '<div class="form-group">' .
             '<label for="color_circulo' . $i . '">Color</label>' .
-            '<input value="' . $color . '" class="form-control" type="text" name="color_circulo' . $i . '" id="color_circulo' . $i . '" />' .
+            '<input value="' . $color . '" class="form-control" type="text" name="color_circulo' . $i . '" id="color_circulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_circulo_1_imagen_1">Borde</label>' .
-            '<input value="' . $borde . '" class="form-control" type="number" name="borde_circulo' . $i . '" id="borde_circulo' . $i . '" />' .
+            '<input value="' . $borde . '" class="form-control" type="number" name="borde_circulo' . $i . '" id="borde_circulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_circulo' . $i . '">Opacidad</label>' .
-            '<input value="' . $opacidad . '" class="form-control" type="number" name="opacidad_circulo' . $i . '" id="opacidad_circulo' . $i . '" />' .
+            '<input value="' . $opacidad . '" class="form-control" type="number" step="any" name="opacidad_circulo' . $i . '" id="opacidad_circulo' . $i . '" min="0" max="1"  required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="x_circulo' . $i . '">X</label>' .
-            '<input value="' . $cx . '" class="form-control" type="number" name="x_circulo' . $i . '" id="x_circulo' . $i . '" />' .
+            '<input value="' . $cx . '" class="form-control" type="number" step="any" name="x_circulo' . $i . '" id="x_circulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="y_circulo_1_imagen_1">Y</label>' .
-            '<input value="' . $cy . '" class="form-control" type="number" name="y_circulo' . $i . '" id="y_circulo' . $i . '" />' .
+            '<input value="' . $cy . '" class="form-control" type="number" step="any" name="y_circulo' . $i . '" id="y_circulo' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="radio_circulo' . $i . '">Radio</label>' .
-            '<input value="' . $radio . '" class="form-control" type="number" name="radio_circulo' . $i . '" id="radio_circulo' . $i . '" />' .
+            '<input value="' . $radio . '" class="form-control" type="number" step="any" name="radio_circulo' . $i . '" id="radio_circulo' . $i . '" required />' .
             '</div>';
         '</div>';
         $edit .= $circuloHtml;
@@ -381,31 +381,31 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '<hr class="separator"/>' .
             '<div class="form-group">' .
             '<label for="color_elipse' . $i . '">Color</label>' .
-            '<input value="' . $color . '"  class="form-control" type="text" name="color_elipse' . $i . '" id="color_elipse' . $i . '" />' .
+            '<input value="' . $color . '"  class="form-control" type="text" name="color_elipse' . $i . '" id="color_elipse' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_elipse' . $i . '">Borde</label>' .
-            '<input value="' . $borde . '"  class="form-control" type="number" name="borde_elipse' . $i . '" id="borde_elipse' . $i . '" />' .
+            '<input value="' . $borde . '"  class="form-control" type="number" name="borde_elipse' . $i . '" id="borde_elipse' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
-            '<label for="opacidad_elipse' . $i . '">opacidad</label>' .
-            '<input value="' . $opacidad . '"  class="form-control" type="number" name="opacidad_elipse' . $i . '" id="opacidad_elipse_1_imagen_1" />' .
+            '<label for="opacidad_elipse' . $i . '">Opacidad</label>' .
+            '<input value="' . $opacidad . '"  class="form-control" type="number" step="any" name="opacidad_elipse' . $i . '" id="opacidad_elipse_1_imagen_1" min="0" max="1"  required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="x_elipse' . $i . '">X</label>' .
-            '<input value="' . $cx . '"  class="form-control" type="number" name="x_elipse' . $i . '" id="x_elipse' . $i . '" />' .
+            '<input value="' . $cx . '"  class="form-control" type="number" step="any" name="x_elipse' . $i . '" id="x_elipse' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="y_elipse' . $i . '">Y</label>' .
-            '<input value="' . $cy . '"  class="form-control" type="number" name="y_elipse' . $i . '" id="y_elipse' . $i . '" />' .
+            '<input value="' . $cy . '"  class="form-control" type="number" step="any" name="y_elipse' . $i . '" id="y_elipse' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="radio_x_elipse' . $i . '">Radio X</label>' .
-            '<input value="' . $rx . '"  class="form-control" type="number" name="radio_x_elipse' . $i . '" id="radio_x_elipse' . $i . '" />' .
+            '<input value="' . $rx . '"  class="form-control" type="number" step="any" name="radio_x_elipse' . $i . '" id="radio_x_elipse' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="radio_y_elipse' . $i . '">Radio Y</label>' .
-            '<input value="' . $ry . '"  class="form-control" type="number" name="radio_y_elipse' . $i . '" id="radio_y_elipse' . $i . '" />' .
+            '<input value="' . $ry . '"  class="form-control" type="number" step="any" name="radio_y_elipse' . $i . '" id="radio_y_elipse' . $i . '" required />' .
             '</div>';
         '</div>';
         $edit .= $elipseHtml;
@@ -474,27 +474,27 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '<hr class="separator"/>' .
             '<div class="form-group">' .
             '<label for="color_linea' . $i . '">Color</label>' .
-            '<input value="' . $color . '" class="form-control" type="text" name="color_linea' . $i . '" id="color_linea' . $i . '" />' .
+            '<input value="' . $color . '" class="form-control" type="text" name="color_linea' . $i . '" id="color_linea' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="grosor_linea' . $i . '">Grosor</label>' .
-            '<input value="' . $grosor . '" class="form-control" type="number" name="grosor_linea' . $i . '" id="grosor_linea' . $i . '" />' .
+            '<input value="' . $grosor . '" class="form-control" type="number" name="grosor_linea' . $i . '" id="grosor_linea' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="x1_linea' . $i . '">X</label>' .
-            '<input value="' . $x1 . '" class="form-control" type="number" name="x1_linea' . $i . '" id="x1_linea' . $i . '" />' .
+            '<input value="' . $x1 . '" class="form-control" type="number" step="any" name="x1_linea' . $i . '" id="x1_linea' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="y1_linea' . $i . '">Y</label>' .
-            '<input value="' . $y1 . '" class="form-control" type="number" name="y1_linea' . $i . '" id="y1_linea' . $i . '" />' .
+            '<input value="' . $y1 . '" class="form-control" type="number" step="any" name="y1_linea' . $i . '" id="y1_linea' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="x2_linea' . $i . '">X</label>' .
-            '<input value="' . $x2 . '" class="form-control" type="number" name="x2_linea' . $i . '" id="x2_linea' . $i . '" />' .
+            '<input value="' . $x2 . '" class="form-control" type="number" step="any" name="x2_linea' . $i . '" id="x2_linea' . $i . '" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="y2_linea' . $i . '">Y</label>' .
-            '<input value="' . $y2 . '" class="form-control" type="number" name="y2_linea' . $i . '" id="y2_linea' . $i . '" />' .
+            '<input value="' . $y2 . '" class="form-control" type="number" step="any" name="y2_linea' . $i . '" id="y2_linea' . $i . '" required />' .
             '</div>';
         $edit .= $lineaHtml;
     }

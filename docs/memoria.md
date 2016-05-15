@@ -11,7 +11,7 @@ El XSD proporcionado representa una de las múltiples alternativas para modelar 
 
 - `tipoRepositorio`: el repositorio en cuestión, que contiene como mínimo una imagen.
 - `tipoPunto`: un tipo reutilizable que representa un punto con coordenadas (x,y), definida cada una de ellas como tipo `double`.
-- `tipoForma`: un tipo reutilizable con los tres atributes comunes a varias entidades: color, borde y opacidad. Por sencillez, se modela color como una cadena de texto (permitiendo tanto códigos de color en hexadecimal como descripciones en inglés) y los restantes como enteros.
+- `tipoForma`: un tipo reutilizable con los tres atributes comunes a varias entidades: color, borde y opacidad. Por sencillez, se modela color como una cadena de texto (permitiendo tanto códigos de color en hexadecimal como descripciones en inglés), el borde como entero y la opacidad como un tipo `double` limitado entre 0 y 1, dado que se trata de un porcentaje.
 - `tipoRectangulo`: extiende `tipoForma` y presenta sus atributos propios en secuencia ordenada y con tipo `double`.
 - `tipoCirculo`: ídem.
 - `tipoElipse`: ídem. 
@@ -40,7 +40,7 @@ Mediante Javascript se manipula el DOM de la página en el propio cliente, sin n
 - Añadir un número arbitrario de puntos en las figuras `tipoPoligono` y `tipoPolilinea`.
 - Eliminar un punto añadido en los tipos citados en el punto anterior.
 
-Plantear esta interfaz ha resultado ser una tarea compleja por la gran libertad que permite y la necesidad de control sobre identificadores y número de elementos de cada tipo en general.
+Plantear esta interfaz ha resultado ser una tarea compleja por la gran libertad que permite y la necesidad de control sobre identificadores y número de elementos de cada tipo en general. Depurar errores tampoco ha sido tarea fácil, debido al uso de AJAX. Estas tareas se han facilitado con la ayuda de herramientas como [Firebug](https://addons.mozilla.org/es/firefox/addon/firebug/) (complemento de desarrollador para Mozilla Firefox), [Chrome Developer Tools](https://developer.chrome.com/devtools) (el equivalente del anterior en Chrome) y el potente depurador Javascript integrado con Chrome de IntelliJ PhpStorm.
 
 ![Ejemplo de formulario](./img/form.png)
 
