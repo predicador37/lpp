@@ -25,7 +25,7 @@ foreach ($imagen->polygon as $poligono ) {
 foreach ($imagen->polyline as $polilinea ) {
     $puntos="";
     $polilinea['stroke'] = $_POST['color_'.$polilinea['id']];
-    for ($i=1; $i <= $_POST['puntos_'.$polilinea['id']]; ++$i) {
+    for ($i=1; $i < $_POST['puntos_'.$polilinea['id']]; ++$i) {
         $puntos.= $_POST['x'.$i."_".$polilinea['id']] . ",";
         $puntos.= $_POST['y'.$i."_".$polilinea['id']] . " ";
     }

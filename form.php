@@ -172,7 +172,7 @@ for ($i = 1; $i <= $_POST['imagens']; ++$i) {
     $dom = dom_import_simplexml($repositorio)->ownerDocument;
     $dom->formatOutput = TRUE;
     $formatted = $dom->saveXML();
-    echo $formatted
+    echo $formatted;
 
 
 ?>

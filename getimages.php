@@ -13,6 +13,9 @@ if ($_POST["action"] == "upload")
     if ($_FILES["file"]["tmp_name"])
     {
         $file = $_FILES["file"]["tmp_name"];
+        session_start();
+        $repositorio = file_get_contents($file);
+        $_SESSION['repositorio'] = $repositorio;
 
 $svg = array();
 

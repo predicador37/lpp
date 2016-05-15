@@ -129,11 +129,11 @@ for ($i=0; $i < $n_figuras; ++$i ) {
                 '<hr class="separator"/>' .
                 '<div class="form-group">' .
                 '<label for="x'.($j-2).'_poligono' . $i . '">X</label>' .
-                '<input class="form-control" value="'.$svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][0]["data"].'" type="number" name="x'.($j-2).'_poligono' . $i . '" id="x'.($j-2).'_poligono' . $i . '" />' .
+                '<input class="form-control" value="'.(array_key_exists("data",$svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][0]) ? $svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][0]["data"] : 0 ).'" type="number" name="x'.($j-2).'_poligono' . $i . '" id="x'.($j-2).'_poligono' . $i . '" />' .
                 '</div>' .
                 '<div class="form-group">' .
                 '<label for="y'.($j-2).'_poligono' . $i . '">Y</label>' .
-                '<input class="form-control" value="'.$svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][1]["data"].'" type="number" name="y'.($j-2).'_poligono' . $i . '" id="y'.($j-2).'_poligono' . $i . '" />' .
+                '<input class="form-control" value="'.(array_key_exists("data",$svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][1]) ? $svg[0]["hijos"][$n_images-1]["hijos"][$i]["hijos"][$j]["hijos"][1]["data"] : 0) .'" type="number" name="y'.($j-2).'_poligono' . $i . '" id="y'.($j-2).'_poligono' . $i . '" />' .
                 '</div>' .
                 '</div>' ;
         }
