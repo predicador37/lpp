@@ -10,18 +10,18 @@
 
     <xs:complexType name="tipoPunto">
         <xs:sequence>
-            <xs:element name="x" type="xs:double"/>
-            <xs:element name="y" type="xs:double"/>
+            <xs:element name="x" type="xs:decimal"/>
+            <xs:element name="y" type="xs:decimal"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="tipoForma">
         <xs:sequence>
             <xs:element name="color" type="xs:string"/>
-            <xs:element name="borde" type="xs:int"/>
+            <xs:element name="borde" type="xs:nonNegativeInteger"/>
             <xs:element name="opacidad">
                 <xs:simpleType>
-                    <xs:restriction base="xs:double">
+                    <xs:restriction base="xs:decimal">
                         <xs:minInclusive value="0"/>
                         <xs:maxInclusive value="1"/>
                     </xs:restriction>
@@ -35,8 +35,8 @@
             <xs:extension base="lpp:tipoForma" >
                 <xs:sequence>
                     <xs:element name="posicion" type="lpp:tipoPunto"></xs:element>
-                    <xs:element name="ancho" type="xs:double"/>
-                    <xs:element name="alto" type="xs:double"/>
+                    <xs:element name="ancho" type="xs:decimal"/>
+                    <xs:element name="alto" type="xs:decimal"/>
                 </xs:sequence>
             </xs:extension>
 
@@ -48,7 +48,7 @@
             <xs:extension base="lpp:tipoForma">
                 <xs:sequence>
                     <xs:element name="centro" type="lpp:tipoPunto"></xs:element>
-                    <xs:element name="radio" type="xs:double"/>
+                    <xs:element name="radio" type="xs:decimal"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
@@ -59,8 +59,8 @@
             <xs:extension base="lpp:tipoForma" >
                 <xs:sequence>
                     <xs:element name="centro" type="lpp:tipoPunto"></xs:element>
-                    <xs:element name="radio_x" type="xs:double"/>
-                    <xs:element name="radio_y" type="xs:double"/>
+                    <xs:element name="radio_x" type="xs:decimal"/>
+                    <xs:element name="radio_y" type="xs:decimal"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

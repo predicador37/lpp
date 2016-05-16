@@ -11,7 +11,7 @@ El XSD proporcionado representa una de las múltiples alternativas para modelar 
 
 - `tipoRepositorio`: el repositorio en cuestión, que contiene como mínimo una imagen.
 - `tipoPunto`: un tipo reutilizable que representa un punto con coordenadas (x,y), definida cada una de ellas como tipo `double`.
-- `tipoForma`: un tipo reutilizable con los tres atributes comunes a varias entidades: color, borde y opacidad. Por sencillez, se modela color como una cadena de texto (permitiendo tanto códigos de color en hexadecimal como descripciones en inglés), el borde como entero y la opacidad como un tipo `double` limitado entre 0 y 1, dado que se trata de un porcentaje.
+- `tipoForma`: un tipo reutilizable con los tres atributes comunes a varias entidades: color, borde y opacidad. Por sencillez, se modela color como una cadena de texto (permitiendo tanto códigos de color en hexadecimal como descripciones en inglés), el borde como entero no negativo y la opacidad como un tipo `decimal` limitado entre 0 y 1, dado que se trata de un porcentaje.
 - `tipoRectangulo`: extiende `tipoForma` y presenta sus atributos propios en secuencia ordenada y con tipo `double`.
 - `tipoCirculo`: ídem.
 - `tipoElipse`: ídem. 
@@ -30,7 +30,7 @@ Esta parte de la práctica consta de los siguientes archivos:
 
 Para permitir la generación de un formulario con un número arbitrario de imágenes, figuras y puntos (en el caso de las figuras que los contengan), ha sido necesario utilizar tecnologías asíncronas y javascript (AJAX) a través de la biblioteca [JQuery](https://jquery.com/).
 
-El formulario en un principio está prácticamente vacío, y a través de AJAX se añade el código HTML necesario para generar el formulario (el cual se encuentra inicialmente definido en variables Javascript).
+El formulario en un principio está prácticamente vacío, y a través de AJAX se añade el código HTML necesario para generar el formulario (el cual se encuentra inicialmente definido en variables Javascript). Aprovechando las capacidades de validación de HTML5, se han introducido las mismas restricciones que en el XSD a la hora de poblar los campos, de manera que no puedan introducirse valores incorrectos para los distintos atributos.
 
 Mediante Javascript se manipula el DOM de la página en el propio cliente, sin necesidad de realizar llamadas al servidor. De esta forma se generan identificadores únicos para cada figura y cada uno de sus elementos, independientemente de que haya más de una figura del mismo tipo o no. La interfaz permite:
 
@@ -39,6 +39,7 @@ Mediante Javascript se manipula el DOM de la página en el propio cliente, sin n
 - Eliminar una figura existente dentro de una imagen.
 - Añadir un número arbitrario de puntos en las figuras `tipoPoligono` y `tipoPolilinea`.
 - Eliminar un punto añadido en los tipos citados en el punto anterior.
+
 
 Plantear esta interfaz ha resultado ser una tarea compleja por la gran libertad que permite y la necesidad de control sobre identificadores y número de elementos de cada tipo en general. Depurar errores tampoco ha sido tarea fácil, debido al uso de AJAX. Estas tareas se han facilitado con la ayuda de herramientas como [Firebug](https://addons.mozilla.org/es/firefox/addon/firebug/) (complemento de desarrollador para Mozilla Firefox), [Chrome Developer Tools](https://developer.chrome.com/devtools) (el equivalente del anterior en Chrome) y el potente depurador Javascript integrado con Chrome de IntelliJ PhpStorm.
 

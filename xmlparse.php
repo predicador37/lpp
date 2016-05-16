@@ -133,7 +133,7 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_poligono' . $i . '">Borde</label>' .
-            '<input class="form-control"  value="' . $borde . '" type="number" name="borde_poligono' . $i . '" id="borde_poligono' . $i . '" required />' .
+            '<input class="form-control"  value="' . $borde . '" type="number" name="borde_poligono' . $i . '" id="borde_poligono' . $i . '" min="0" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_poligono' . $i . '">Opacidad</label>' .
@@ -220,7 +220,7 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_rectangulo' . $i . '">Borde</label>' .
-            '<input value="' . $borde . '" class="form-control" type="number" name="borde_rectangulo' . $i . '" id="borde_rectangulo' . $i . '" required />' .
+            '<input value="' . $borde . '" class="form-control" type="number" name="borde_rectangulo' . $i . '" id="borde_rectangulo' . $i . '" min="0" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_rectangulo' . $i . '">Opacidad</label>' .
@@ -301,7 +301,7 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_circulo_1_imagen_1">Borde</label>' .
-            '<input value="' . $borde . '" class="form-control" type="number" name="borde_circulo' . $i . '" id="borde_circulo' . $i . '" required />' .
+            '<input value="' . $borde . '" class="form-control" type="number" name="borde_circulo' . $i . '" id="borde_circulo' . $i . '" min="0" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_circulo' . $i . '">Opacidad</label>' .
@@ -385,7 +385,7 @@ for ($i = 0; $i < $n_figuras; ++$i) {
             '</div>' .
             '<div class="form-group">' .
             '<label for="borde_elipse' . $i . '">Borde</label>' .
-            '<input value="' . $borde . '"  class="form-control" type="number" name="borde_elipse' . $i . '" id="borde_elipse' . $i . '" required />' .
+            '<input value="' . $borde . '"  class="form-control" type="number" name="borde_elipse' . $i . '" id="borde_elipse' . $i . '" min="0" required />' .
             '</div>' .
             '<div class="form-group">' .
             '<label for="opacidad_elipse' . $i . '">Opacidad</label>' .
